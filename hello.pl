@@ -1,3 +1,5 @@
+#!/usr/bin/perl
+# chmod 775 hello.pl
 @a = qw(foo bar baz);
 @a = ('foo', 'bar', 'baz');		# single quotes are raw
 
