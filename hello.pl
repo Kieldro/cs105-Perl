@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 # chmod 775 hello.pl
+# questions
+# multiline
+# ./ in path?
 @a = qw(foo bar baz);
 @a = ('foo', 'bar', 'baz');		# single quotes are raw
 
@@ -35,4 +38,7 @@ given($grade){
 	
 }
 %a = ('a', 1, 'b', 2, 'c', 3);
-%a = ('a' => 1, 'b' => 2, 'c' => 3);
+%a = ('a' => 1, 'b' => 2, 'c' => 3);		# syntactic sugar/sugar
+
+
+die if true;

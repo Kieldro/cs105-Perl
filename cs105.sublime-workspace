@@ -1,0 +1,376 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ini",
+				"initHopper"
+			],
+			[
+				"path",
+				"pathCol"
+			],
+			[
+				"v",
+				"vInt"
+			],
+			[
+				"ca",
+				"capacity"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "a2.pl",
+			"settings":
+			{
+				"buffer_size": 209,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "hello.pl",
+			"settings":
+			{
+				"buffer_size": 699,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "notes",
+			"settings":
+			{
+				"buffer_size": 11,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"",
+				"Build: Build"
+			]
+		],
+		"width": 404.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/keo/Documents/cs439/notes.txt",
+		"/home/keo/Documents/cs439/project0/Makefile",
+		"/home/keo/Documents/cs439/hw/hw1_53427_ib.txt",
+		"/home/keo/Documents/cs439/project0/fib.c",
+		"/home/keo/Documents/cs439/project0/handle.c",
+		"/home/keo/Documents/cs105/a2.pl",
+		"/home/keo/Documents/cs439/hw1_53427_ib.txt",
+		"/home/keo/Documents/cs105/hello.pl",
+		"/home/keo/Documents/cs105/a1.pl",
+		"/**",
+		"/home/keo/Documents/cs439/hw1_53425_ib.txt",
+		"/home/keo/Documents/cs371p/life/TestLife.c++",
+		"/home/keo/Documents/cs371p/life/RunLife.c++",
+		"/home/keo/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/keo/Documents/cs371p/darwin/README.txt",
+		"/home/keo/Documents/cs371p/darwin/TestDarwin.c++",
+		"/home/keo/Documents/cs371p/darwin/RunDarwin.c++",
+		"/home/keo/Documents/cs371p/darwin/Darwin.h",
+		"/home/keo/Documents/cs371p/darwin/scratch.c++",
+		"/home/keo/Documents/cs371p/voting/Voting.h",
+		"/home/keo/Documents/cs371p/matlab/Makefile",
+		"/home/keo/Documents/cs371p/p5/Makefile",
+		"/home/keo/Documents/cs371p/matlab/TestMatlab.c++",
+		"/home/keo/Documents/cs371p/matlab/Matlab.h",
+		"/home/keo/Documents/cs371p/matlab/TestMatrix.c++",
+		"/home/keo/Documents/cs371p/matlab/Matrix.h",
+		"/home/keo/Documents/cs371p/matlab/README.txt",
+		"/home/keo/Documents/cs371p/allocator/TestAllocator.c++",
+		"/home/keo/Documents/cs371p/allocator/Allocator.h",
+		"/home/keo/Documents/cs371p/collatz/TestCollatz.c++",
+		"/home/keo/Documents/cs371p/collatz/RunCollatz.out",
+		"/home/keo/Documents/cs371p/collatz/Collatz.h",
+		"/home/keo/Documents/cs371p/collatz/build.sh",
+		"/home/keo/Documents/cs371p/collatz/README.txt",
+		"/home/keo/Documents/cs439/hw1_52980_ib.txt",
+		"/home/keo/Dropbox/Documents/partsPrices",
+		"/home/keo/Documents/Tower-Defense-Game/main.cpp",
+		"/home/keo/Documents/cs378/cs378-deque/build.sh",
+		"/home/keo/Documents/cs378/cs378-deque/TestDeque.c++",
+		"/home/keo/Documents/cs378/cs378-integer/build.sh",
+		"/home/keo/Documents/cs378/cs378-integer/TestInteger.c++",
+		"/home/keo/Documents/cs378/cs378-integer/Integer.h",
+		"/home/keo/Documents/hello/cpp/scratch.cpp",
+		"/home/keo/Documents/hello/hello.cc",
+		"/home/keo/Documents/cs378/cs378-smp/RunSMP.in",
+		"/home/keo/Dropbox/ubuntu commands",
+		"/home/keo/Documents/hello/.gitignore",
+		"/home/keo/Documents/cs378/cs378-smp/SMP.h",
+		"/etc/profile.d/bash_completion.sh"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"team",
+			"\\",
+			"Parent",
+			" adjNeighbors = 0; diagNeighbors = 0; ",
+			"out",
+			"		",
+			"  ",
+			"    ",
+			"\n    ",
+			"    ",
+			"        ",
+			"       ",
+			"      ",
+			"     ",
+			"    ",
+			"                          ",
+			"                         ",
+			"                        ",
+			"                       ",
+			"                      ",
+			"                     ",
+			"                    ",
+			"                   ",
+			"                  ",
+			"                 ",
+			"                ",
+			"               ",
+			"              ",
+			"             ",
+			"            ",
+			"           ",
+			"          ",
+			"         ",
+			"        ",
+			"       ",
+			"      ",
+			"     ",
+			"    ",
+			"2DTvector",
+			"cout",
+			"logic",
+			"':",
+			"'w'",
+			"'e'",
+			"'s'",
+			"instruction",
+			"int",
+			"r",
+			"int",
+			"i",
+			"Allocator",
+			"Allocator::a + i);\n			}",
+			"cs378pj5",
+			"Graph",
+			"// ----------\n",
+			"    ",
+			"iterator",
+			"include",
+			"using",
+			"<<",
+			"length1",
+			"\n",
+			"Integer",
+			"vector< vector<int> >"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"WEST",
+			"EAST",
+			"SOUTH",
+			"vvec"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "a2.pl",
+					"settings":
+					{
+						"buffer_size": 209,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Perl/Perl.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "hello.pl",
+					"settings":
+					{
+						"buffer_size": 699,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Perl/Perl.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "notes",
+					"settings":
+					{
+						"buffer_size": 11,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 876.0,
+		"selected_items":
+		[
+		],
+		"width": 1542.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 202.0,
+	"status_bar_visible": true
+}
