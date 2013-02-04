@@ -90,10 +90,33 @@ shift @a;
 # List Flattening
 @a = (@b, @c, $a, keys %d);
 # splice removes scalars from arrays?
-sort
-@ARGV
+@b = sort @a;		# stringwise
+@bar = sort { $a cmp $b } @foo;		# numerical sort/ merge sort
 
+@ARGV		# command line args are assigned to this
+$first = shift;		# takes first arg of ARGV
+$gone = delete $hash{'foo'}
+@gone = delete @hash{qw(foo bar)}
+%h = (a => undef);		# undef but exists
+$a = qq($a $b);
+$a = q($a $b);
+$a = ' ' x 40;		# 40 spaces
+@a = qw(a b ) x 3;
+@a = (@a,  'c') x 3;
+length('a' x 40);		# length of string
+scalar(@a);		# length of array
+while(@a)		# similar to scalar
+scalar keys %h;
+while(1..10)
+reverse 1..5;
+@b = grep { !boring($_) } @a;
+say $a;		# prints with newline
+map {say} grep {!boring($_)};		# execute block for every element in list
+%b = map {$_ => ++ $c} @a;
 
-printf
-my
-our
+printf "%.3f\n", 3.1415;
+$a = sprintf "%.cf\n", 3.1415;		# doesn't print
+
+my		# makes it local, good style
+
+our		# global
