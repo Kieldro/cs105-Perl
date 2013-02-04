@@ -20,11 +20,6 @@ while(<>){
 	}
 	
 }
-
-say scalar keys %count;
-say $a[1];
-#map {say} @a;
-
 printf "Number of distinct words: %i\n", scalar keys %count;
 
 @keys = sort { $count{$b} <=> $count{$a} } keys %count;		# sort by value
@@ -39,7 +34,6 @@ open(INFILE, '<', '/usr/share/dict/words')
 	or die "Could not open $!\n";
 while(<INFILE>){
 	chomp;
-	#$dict{$_} = undef;
 	delete $count{lc $_};
 }
 close INFILE;
