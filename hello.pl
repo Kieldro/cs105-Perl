@@ -120,3 +120,6 @@ $a = sprintf "%.cf\n", 3.1415;		# doesn't print
 my		# makes it local, good style
 
 our		# global
+sub foo {
+	say 1;
+}
