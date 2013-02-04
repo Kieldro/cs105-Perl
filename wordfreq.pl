@@ -12,7 +12,7 @@ while(<>){
 	
 	foreach (@words_in_line){
 		$_ = lc $_;		# lower case
-		if (exists $count{$_}){
+		unless (exists $count{$_}){
 			$count{$_} = 1;
 		}else{
 			++$count{$_};
@@ -20,19 +20,34 @@ while(<>){
 	}
 	
 }
-@a = %count;
+
 say scalar keys %count;
 say $a[1];
 #map {say} @a;
 
-open($inFile, '<', '/usr/share/dict/words')
-	or die "Could not open $!\n";
-
-
-
-close $inFile;
-
 printf "Number of distinct words: %i\n", scalar keys %count;
 
+@keys = sort { $count{$b} <=> $count{$a} } keys %count;		# sort by value
+foreach (@keys){
+	last if(++$i > 10);
+	print "$_: $count{$_}\n";
+}
 
-print "Number of distinct words not in dictionary: $a\n";
+
+# remove dictionary words
+open(INFILE, '<', '/usr/share/dict/words')
+	or die "Could not open $!\n";
+while(<INFILE>){
+	chomp;
+	#$dict{$_} = undef;
+	delete $count{lc $_};
+}
+close INFILE;
+
+printf "Number of distinct words not in dictionary: %i\n", scalar keys %count;
+
+@keys = sort { $count{$b} <=> $count{$a} } keys %count;		# sort by value
+foreach (@keys){
+	last if(++$j > 10);
+	print "$_: $count{$_}\n";
+}
