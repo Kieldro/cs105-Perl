@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # Ian Buitrago
 # 2-4-2013
-
+# log: 2-4 3 hrs
 # Assignment 3: Word Frequencies
 # golfing?
 
