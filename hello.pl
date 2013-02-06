@@ -6,6 +6,17 @@
 # fg?
 # Effective Perl Programming 2n ed*
 # reference counting trace garbage collection
+# QED?
+
+use warnings;		# enables lexical warnings
+use strict qw(refs vars subs);		# stricter form of warnings
+# prohibits use of symbolic refs
+# warns about not decalaring variables
+
+{
+	no warnings 'closure';
+	
+}
 
 @a = qw(foo bar baz);		# quote words, quote the fucking words, no commas or quotes!
 @a = ('foo', 'bar', 'baz');		# single quotes are raw
@@ -130,3 +141,27 @@ sub foo {
 		$sum += 1;
 	}
 }
+
+#!/usr/bin/perl -w turns on all warnings
+$ref = \$foo;		# forms reference
+
+# perlrequick perlretut perlreref - quick ref perlre - full reference
+regex
+
+
+/[+-]?[1-9][0-9]*(\.[0-9]*)?/		# regular expression for a number
+# . is any character
+/foo|bar/		# foo or bar
+# *, +, ? are quantifiers
+# quatifiers have highest precedence, then juxaposition, last alternation
+# anchors: ^ is start of line, $ is end of line/string
+# metacharacters - do not match a character
+/[123456]/
+/[1-6]/		# inclusive
+/[^0-9]/		# ^ caret inside a character class exludes
+/\d/			# digits builtin perl
+/\D/		# non digit
+/\s/		# whitespace
+/\w/		# word [A-Za-z0-9_]
+/[^^-]/		# excludes caret or hyphen
+# [] character class, () grouping
