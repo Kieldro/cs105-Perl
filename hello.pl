@@ -165,3 +165,14 @@ regex
 /\w/		# word [A-Za-z0-9_]
 /[^^-]/		# excludes caret or hyphen
 # [] character class, () grouping
+# spaces are matched in char class or with x flag eg /   /x
+local $/;		# enable slurp mode; perldoc perlvar same as $/ = undef;
+# dynamic scoping?
+# matching
+m/g/
+# substitution
+s/g/G/
+if($_ =~ /^s* \w+ /){		# !~ opposite of =~
+	
+	
+}
