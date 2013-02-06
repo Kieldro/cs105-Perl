@@ -3,6 +3,10 @@
 # questions
 # multiline
 # ./ in path?
+# fg?
+# Effective Perl Programming 2n ed*
+# reference counting trace garbage collection
+
 @a = qw(foo bar baz);		# quote words, quote the fucking words, no commas or quotes!
 @a = ('foo', 'bar', 'baz');		# single quotes are raw
 
@@ -122,4 +126,7 @@ my		# makes it local, good style
 our		# global
 sub foo {
 	say 1;
+	foreach $args(@_){
+		$sum += 1;
+	}
 }
