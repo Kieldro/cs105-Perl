@@ -27,7 +27,7 @@
 			"file": "a2.pl",
 			"settings":
 			{
-				"buffer_size": 209,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
@@ -35,7 +35,7 @@
 			"file": "hello.pl",
 			"settings":
 			{
-				"buffer_size": 699,
+				"buffer_size": 3047,
 				"line_ending": "Unix"
 			}
 		},
@@ -227,7 +227,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -235,7 +235,7 @@
 					"file": "a2.pl",
 					"settings":
 					{
-						"buffer_size": 209,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -261,15 +261,15 @@
 					"file": "hello.pl",
 					"settings":
 					{
-						"buffer_size": 699,
+						"buffer_size": 3047,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								337,
+								337
 							]
 						],
 						"settings":

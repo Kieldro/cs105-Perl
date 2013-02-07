@@ -3,6 +3,21 @@
 # questions
 # multiline
 # ./ in path?
+# fg?
+# Effective Perl Programming 2n ed*
+# reference counting trace garbage collection
+# QED?
+
+use warnings;		# enables lexical warnings
+use strict qw(refs vars subs);		# stricter form of warnings
+# prohibits use of symbolic refs
+# warns about not decalaring variables
+
+{
+	no warnings 'closure';
+	
+}
+
 @a = qw(foo bar baz);		# quote words, quote the fucking words, no commas or quotes!
 @a = ('foo', 'bar', 'baz');		# single quotes are raw
 
@@ -122,10 +137,47 @@ my		# makes it local, good style
 our		# global
 sub foo {
 	say 1;
+	foreach $args(@_){
+		$sum += 1;
+	}
 }
  # first parameter of a list binding is called the "slurpie parameter", slurps it up
  # subroutines are passed by reference, watch out
  # clear array to remove aliasing
  @_ = ();
- 
- 
+
+#!/usr/bin/perl -w turns on all warnings
+$ref = \$foo;		# forms reference
+
+# perlrequick perlretut perlreref - quick ref perlre - full reference
+regex
+
+
+/[+-]?[1-9][0-9]*(\.[0-9]*)?/		# regular expression for a number
+# . is any character
+/foo|bar/		# foo or bar
+# *, +, ? are quantifiers
+# quatifiers have highest precedence, then juxaposition, last alternation
+# anchors: ^ is start of line, $ is end of line/string
+# metacharacters - do not match a character
+/[123456]/
+/[1-6]/		# inclusive
+/[^0-9]/		# ^ caret inside a character class exludes
+/\d/			# digits builtin perl
+/\D/		# non digit
+/\s/		# whitespace
+/\w/		# word [A-Za-z0-9_]
+/[^^-]/		# excludes caret or hyphen
+# [] character class, () grouping
+# spaces are matched in char class or with x flag eg /   /x
+local $/;		# enable slurp mode; perldoc perlvar same as $/ = undef;
+# dynamic scoping?
+# matching
+m/g/
+# substitution
+s/g/G/
+if($_ =~ /^s* \w+ /){		# !~ opposite of =~
+	
+	
+}
+
