@@ -94,7 +94,7 @@ shift @a;
 @bar = sort { $a cmp $b } @foo;		# numerical sort/ merge sort
 
 @ARGV		# command line args are assigned to this
-$first = shift;		# takes first arg of ARGV
+$first = shift;		# takes first arg of ARGV, unless in subroutine then @_ 
 $gone = delete $hash{'foo'}
 @gone = delete @hash{qw(foo bar)}
 %h = (a => undef);		# undef but exists
@@ -123,3 +123,9 @@ our		# global
 sub foo {
 	say 1;
 }
+ # first parameter of a list binding is called the "slurpie parameter", slurps it up
+ # subroutines are passed by reference, watch out
+ # clear array to remove aliasing
+ @_ = ();
+ 
+ 
