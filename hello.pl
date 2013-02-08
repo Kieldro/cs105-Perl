@@ -198,3 +198,37 @@ m/foo/ means match
 \B is the opposite
 //i flag: case insensitive
 $1 holds first term, $2 etc
+while(<>){
+	s{foo|ba[rz] \s+ (\d+)}
+	{ uc($1) . ' ' . (1+$2)}eix		# evalutative subsitution, code	
+}
+
+qr//		# quotes regexes to create a regex object
+my $indent = qr/[A-Za-z]/;
+# capture buffers
+if($x =~ /(?<first> \w+) \s+
+	(?<second>) \w+) /x)		# $first in addition to $1
+
+# arbitrary quantification
+=begin
+{0,} == *
+{0,1} == ?
+{n} exactly n times
+=cut
+# nongreedy quantification
+*?, +?, {n,m}?		# grabs as few as possible
+# m flag so ^ and & match begin/end of any line instead of whole string
+# s flag treats string as single line. . matches \n now
+
+# backreferences
+/^(\S+) \s+ \1/x		# \1 matches first group, but maybe exponential runtime
+/\d+(?=\t)/		# doesn't consume tab
+
+# \G anchor of cursor, /g flag means \G at begining
+
+
+
+
+
+
+
