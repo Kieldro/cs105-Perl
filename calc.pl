@@ -9,7 +9,7 @@ use v5.10;
 use List::Util qw/reduce/;
 no warnings 'once';
 
-$DEBUG = 1;
+$DEBUG = 0;
 
 while(<>){
 	chomp;
@@ -18,10 +18,10 @@ while(<>){
 	if(m/\d+/){ push @stack, $_ }		# no semicolon? 5.1?
 	# operators
 	else{
-		if   (/\+/){ $stack[-2] += pop @stack; }
-		elsif(/\-/){ $stack[-2] -= pop @stack; }
-		elsif(/\*/){ $stack[-2] *= pop @stack; }
-		elsif(/\//){ $stack[-2] /= pop @stack; }
+		if   (/\+/){ $stack[-2] += pop @stack }
+		elsif(/\-/){ $stack[-2] -= pop @stack }
+		elsif(/\*/){ $stack[-2] *= pop @stack }
+		elsif(/\//){ $stack[-2] /= pop @stack }
 		elsif(/squares/i){ sq() }
 		elsif(/sqrt/i){ root() }
 		elsif(/sum/i){ sum() }
@@ -31,6 +31,7 @@ while(<>){
 		
 		say "Stack: @stack"
 	}
+	say STDERR "debug: @stack" if $DEBUG;
 }
 
 # special functions
@@ -56,6 +57,5 @@ sub stddev{
 	residuals();
 	@stack = map {$_ * $_} @stack;		# square each element
 	mean();
-	root();
-	#say "debug: @stack" if $DEBUG;
+	root()
 }
