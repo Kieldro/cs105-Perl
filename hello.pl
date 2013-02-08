@@ -2,12 +2,18 @@
 # chmod 775 hello.pl
 # questions
 # multiline
+=begin
 # ./ in path?
 # fg?
 # Effective Perl Programming 2n ed*
 # reference counting trace garbage collection
 # QED?
+# sed, awk, sh?
+# The three principal virtues of a programmer are Laziness, Impatience, and Hubris. See the Camel Book for why.
+=cut
 
+use v5.10;		# for say
+#use diagnostics		# pragma?
 use warnings;		# enables lexical warnings
 use strict qw(refs vars subs);		# stricter form of warnings
 # prohibits use of symbolic refs

@@ -6,7 +6,7 @@
 
 use warnings;
 use v5.10;
-use List::Util qw(reduce);
+use List::Util qw/reduce/;
 no warnings 'once';
 
 $DEBUG = 1;
@@ -34,7 +34,7 @@ while(<>){
 }
 
 # special functions
-sub sq{ $stack[-1] *= $stack[-1] }
+sub sq{ $stack[-1] **= 2 }
 
 sub root{ $stack[-1] = sqrt($stack[-1]) }
 
