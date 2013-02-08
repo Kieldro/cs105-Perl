@@ -11,5 +11,5 @@ test:
 	./test.pl
 
 turnin:
-	turnin --submit cdunham a3 wordfreq.pl
-	turnin --list cdunham a3
+	turnin --submit cdunham a4 calc.pl
+	turnin --list cdunham a4

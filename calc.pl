@@ -17,18 +17,20 @@ while(<>){
 	# operand
 	if(m/\d+/){ push @stack, $_ }		# no semicolon? 5.1?
 	# operators
-	elsif(/\+/){ $stack[-2] += pop @stack; }
-	elsif(/\-/){ $stack[-2] -= pop @stack; }
-	elsif(/\*/){ $stack[-2] *= pop @stack; }
-	elsif(/\//){ $stack[-2] /= pop @stack; }
-	elsif(/squares/i){ sq() }
-	elsif(/sqrt/i){ root() }
-	elsif(/sum/i){ sum() }
-	elsif(/mean/i){ mean() }
-	elsif(/residuals/i){ residuals() }
-	elsif(/stddev/i){ stddev() }
-	
-	say "Stack: @stack"
+	else{
+		if   (/\+/){ $stack[-2] += pop @stack; }
+		elsif(/\-/){ $stack[-2] -= pop @stack; }
+		elsif(/\*/){ $stack[-2] *= pop @stack; }
+		elsif(/\//){ $stack[-2] /= pop @stack; }
+		elsif(/squares/i){ sq() }
+		elsif(/sqrt/i){ root() }
+		elsif(/sum/i){ sum() }
+		elsif(/mean/i){ mean() }
+		elsif(/residuals/i){ residuals() }
+		elsif(/stddev/i){ stddev() }
+		
+		say "Stack: @stack"
+	}
 }
 
 # special functions
