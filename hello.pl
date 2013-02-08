@@ -181,3 +181,14 @@ if($_ =~ /^s* \w+ /){		# !~ opposite of =~
 	
 }
 
+while(<>){
+	chomp;
+	die 'invalid input' unless /^\d+\s+\w+/;		# applied to $_
+	# or if (!/^\d+\s+\w+/)
+	
+}
+m/foo/ means match
+\b is a boundary where oneside is \w and other is \W
+\B is the opposite
+//i flag: case insensitive
+$1 holds first term, $2 etc

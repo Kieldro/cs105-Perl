@@ -5,7 +5,7 @@ a3: wordfreq.pl
 	./wordfreq.pl pandp.txt #| less
 
 a4: 
-	./calc.pl
+	./calc.pl #< 2001Tmax.txt 
 
 test:
 	./test.pl
