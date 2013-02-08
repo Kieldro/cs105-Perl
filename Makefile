@@ -1,3 +1,7 @@
+ASSIGNMENT = a4
+
+all: $(ASSIGNMENT)
+
 a2: rainfall.pl
 	rainfall.pl < 2001rain.txt
 
@@ -11,5 +15,5 @@ test:
 	./test.pl
 
 turnin:
-	turnin --submit cdunham a4 calc.pl
-	turnin --list cdunham a4
+	turnin --submit cdunham $(ASSIGNMENT) calc.pl
+	turnin --list cdunham $(ASSIGNMENT)
