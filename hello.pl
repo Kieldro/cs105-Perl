@@ -19,6 +19,7 @@ use strict qw(refs vars subs);		# stricter form of warnings
 # prohibits use of symbolic refs
 # warns about not decalaring variables
 
+=begin1
 {
 	no warnings 'closure';
 	
@@ -227,7 +228,7 @@ if($x =~ /(?<first> \w+) \s+
 # \G anchor of cursor, /g flag means \G at begining
 
 
-
+=cut
 
 
 

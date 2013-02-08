@@ -35,7 +35,7 @@
 			"file": "hello.pl",
 			"settings":
 			{
-				"buffer_size": 3047,
+				"buffer_size": 5316,
 				"line_ending": "Unix"
 			}
 		},
@@ -261,15 +261,15 @@
 					"file": "hello.pl",
 					"settings":
 					{
-						"buffer_size": 3047,
+						"buffer_size": 5316,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								337,
-								337
+								0,
+								0
 							]
 						],
 						"settings":
