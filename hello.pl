@@ -10,6 +10,7 @@
 # QED?
 # sed, awk, sh?
 # The three principal virtues of a programmer are Laziness, Impatience, and Hubris. See the Camel Book for why.
+# use named groupings?
 =cut
 
 use v5.10;		# for say

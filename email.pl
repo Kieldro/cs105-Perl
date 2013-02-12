@@ -3,7 +3,6 @@
 # 2-18-2013
 # log: 1330-1500 2 hrs
 # Assignment 5: Reverse Polish Notation
-# use named groupings?
 
 # use warnings;
 use v5.10;
@@ -15,16 +14,15 @@ $DEBUG = 1;
 while(<>){
 	chomp;
 	$block = qr/[A-Za-z0-9\-_]+/;
+	$emailRE = qr/$block(\.$block)*\@$block(\.$block)*/;
 	
-	$emailRE = qr/$block(\.$block)*\@$block/;
-	
-	
-	push @list, $1 if m/($emailRE)/;
-	
-	
+	if (m/($emailRE)/){
+		push @list, $1;
+		++$hash{$1};
+	}
 }
-# say "boom: @list" if $DEBUG;
+printf "%i distinct address found.\n", scalar keys %hash;
+@list = sort {$a cmp $b} @list;		# default sort
+# say scalar (keys %hash) if $DEBUG;
 
-@list = sort {$a le $b} @list;
-
-map {say} @list;
+map {say qq/$_ $hash{$_}/} @list;
