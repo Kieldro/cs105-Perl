@@ -25,4 +25,4 @@ printf "%i distinct address found.\n", scalar keys %hash;
 @list = sort {$a cmp $b} @list;		# default sort
 # say scalar (keys %hash) if $DEBUG;
 
-map {say qq/$_ $hash{$_}/} @list;
+map {say qq/$_ ($hash{$_})/} @list;

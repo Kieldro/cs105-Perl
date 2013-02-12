@@ -20,6 +20,7 @@ use strict qw(refs vars subs);		# stricter form of warnings
 # prohibits use of symbolic refs
 # warns about not decalaring variables
 
+
 {
 	no warnings 'closure';
 	
@@ -169,7 +170,7 @@ regex
 # metacharacters - do not match a character
 /[123456]/
 /[1-6]/		# inclusive
-/[^0-9]/		# ^ caret inside a character class exludes
+/[^0-9]/		# ^ caret inside a character class excludes
 /\d/			# digits builtin perl
 /\D/		# non digit
 /\s/		# whitespace
@@ -199,6 +200,7 @@ m/foo/ means match
 \B is the opposite
 //i flag: case insensitive
 $1 holds first term, $2 etc $rest?
+$1 holds first paren enclosed term, $2 etc
 while(<>){
 	s{foo|ba[rz] \s+ (\d+)}
 	{ uc($1) . ' ' . (1+$2)}eix		# evalutative subsitution, code	
@@ -227,7 +229,6 @@ if($x =~ /(?<first> \w+) \s+
 /\d+(?=\t)/		# doesn't consume tab
 
 # \G anchor of cursor, /g flag means \G at begining
-
 
 
 
