@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"to",
+				"totalRainfall"
+			],
+			[
+				"dr",
+				"dryDays"
+			],
+			[
+				"tr",
+				"traceDays"
+			],
+			[
 				"ini",
 				"initHopper"
 			],
@@ -24,10 +36,10 @@
 	"buffers":
 	[
 		{
-			"file": "a2.pl",
+			"file": "Makefile",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 275,
 				"line_ending": "Unix"
 			}
 		},
@@ -35,15 +47,15 @@
 			"file": "hello.pl",
 			"settings":
 			{
-				"buffer_size": 3047,
+				"buffer_size": 5316,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "notes",
+			"file": "calc.pl",
 			"settings":
 			{
-				"buffer_size": 11,
+				"buffer_size": 1079,
 				"line_ending": "Unix"
 			}
 		}
@@ -76,6 +88,13 @@
 	},
 	"file_history":
 	[
+		"/home/keo/Documents/cs105/rainfall.pl",
+		"/home/keo/Documents/cs105/2001rain.txt",
+		"/home/keo/Documents/cs105/foo.pl",
+		"/home/keo/Documents/cs105/hello.pl",
+		"/home/keo/Documents/cs105/notes",
+		"/home/keo/Documents/cs105/.gitignore",
+		"/home/keo/.bashrc",
 		"/home/keo/Documents/cs439/notes.txt",
 		"/home/keo/Documents/cs439/project0/Makefile",
 		"/home/keo/Documents/cs439/hw/hw1_53427_ib.txt",
@@ -83,7 +102,6 @@
 		"/home/keo/Documents/cs439/project0/handle.c",
 		"/home/keo/Documents/cs105/a2.pl",
 		"/home/keo/Documents/cs439/hw1_53427_ib.txt",
-		"/home/keo/Documents/cs105/hello.pl",
 		"/home/keo/Documents/cs105/a1.pl",
 		"/**",
 		"/home/keo/Documents/cs439/hw1_53425_ib.txt",
@@ -142,6 +160,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"99",
+			"999",
+			"a2",
 			"team",
 			"\\",
 			"Parent",
@@ -232,10 +253,10 @@
 			[
 				{
 					"buffer": 0,
-					"file": "a2.pl",
+					"file": "Makefile",
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 275,
 						"regions":
 						{
 						},
@@ -248,7 +269,7 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Perl/Perl.tmLanguage"
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -261,15 +282,15 @@
 					"file": "hello.pl",
 					"settings":
 					{
-						"buffer_size": 3047,
+						"buffer_size": 5316,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								337,
-								337
+								5316,
+								5316
 							]
 						],
 						"settings":
@@ -277,30 +298,30 @@
 							"syntax": "Packages/Perl/Perl.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3198.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "notes",
+					"file": "calc.pl",
 					"settings":
 					{
-						"buffer_size": 11,
+						"buffer_size": 1079,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								155,
+								155
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Perl/Perl.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -317,7 +338,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 33.0
 	},
 	"layout":
 	{

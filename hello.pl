@@ -197,7 +197,7 @@ m/foo/ means match
 \b is a boundary where oneside is \w and other is \W
 \B is the opposite
 //i flag: case insensitive
-$1 holds first term, $2 etc
+$1 holds first term, $2 etc $rest?
 while(<>){
 	s{foo|ba[rz] \s+ (\d+)}
 	{ uc($1) . ' ' . (1+$2)}eix		# evalutative subsitution, code	
@@ -205,6 +205,7 @@ while(<>){
 
 qr//		# quotes regexes to create a regex object
 my $indent = qr/[A-Za-z]/;
+qq//		# double quotes
 # capture buffers
 if($x =~ /(?<first> \w+) \s+
 	(?<second>) \w+) /x)		# $first in addition to $1
