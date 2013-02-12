@@ -208,7 +208,7 @@ my $indent = qr/[A-Za-z]/;
 qq//		# double quotes
 # capture buffers
 if($x =~ /(?<first> \w+) \s+
-	(?<second>) \w+) /x)		# $first in addition to $1
+	(?<second> \w+) /x)		# $first in addition to $1
 
 # arbitrary quantification
 =begin

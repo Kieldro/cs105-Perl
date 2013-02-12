@@ -1,0 +1,27 @@
+This text file contains some examples of valid and invalid e-mail
+addresses, adapted from Wikipedia:
+http://en.wikipedia.org/wiki/E-mail_address
+
+(Note that we are using a simpler specification than the official one
+described in Wikipedia.  For the purposes of this assignment, use the
+specification given in the "Input" section of the assignment.)
+
+Here are some valid examples:
+A typical e-mail: Abc@example.com
+You can put dots in the user name: Abc.123@example.com
+The user name can even be all numbers! 1234567890@domain.com
+The domain name may contain hyphens abcd@example-one.com
+_______@domain.com  Honestly, all underscores might not work in real life
+
+Some invalid examples:
+Here there is no @ symbol: Abc.example.com
+You can't end the local address with a dot:  Abc.@example.com
+And you can't have two dots in a row   Abc..123@example.com
+
+Note that not every domain name is required to have multiple parts,
+like in the typical Abc@example.com.  For the purposes of this
+assignment, you should also pick out addresses such as root@localhost.
+Note that your script should pick out the two e-mail addresses in this
+paragraph, even though they are followed by periods, because the
+periods are part of the sentence containing the address, not the
+address itself.
