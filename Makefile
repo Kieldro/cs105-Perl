@@ -1,4 +1,4 @@
-ASSIGNMENT = a4
+ASSIGNMENT = a5
 
 all: $(ASSIGNMENT)
 
@@ -11,9 +11,12 @@ a3: wordfreq.pl
 a4: 
 	./calc.pl #< 2001Tmax.txt 
 
+a5:
+	./email.pl  example1.txt 
+
 test:
 	./test.pl
 
 turnin:
-	turnin --submit cdunham $(ASSIGNMENT) calc.pl
+	turnin --submit cdunham $(ASSIGNMENT) email.pl
 	turnin --list cdunham $(ASSIGNMENT)

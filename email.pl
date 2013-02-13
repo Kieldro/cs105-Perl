@@ -21,8 +21,11 @@ while(<>){
 		++$hash{$1};
 	}
 }
-printf "%i distinct address found.\n", scalar keys %hash;
-@list = sort {$a cmp $b} @list;		# default sort
-# say scalar (keys %hash) if $DEBUG;
 
+printf "%i distinct address found.\n", scalar keys %hash;
+
+# Sort
+@list = sort {$hash{$b} <=> $hash{$a} || $a cmp $b} @list;		# cmp is default sort
+
+# Output
 map {say qq/$_ ($hash{$_})/} @list;
