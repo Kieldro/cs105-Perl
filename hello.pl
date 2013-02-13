@@ -1,16 +1,20 @@
 #!/usr/bin/perl
 # chmod 775 hello.pl
+# The three principal virtues of a programmer are Laziness, Impatience, and Hubris. See the Camel Book for why.
+
 # questions
 # multiline
-=begin
 # ./ in path?
 # fg?
 # Effective Perl Programming 2n ed*
 # reference counting trace garbage collection
 # QED?
 # sed, awk, sh?
-# The three principal virtues of a programmer are Laziness, Impatience, and Hubris. See the Camel Book for why.
-# use named groupings?
+# use named capture?
+# zerowidth assertions, lookahead look behind, variable width
+# 
+
+=begin
 =cut
 
 use v5.10;		# for say
@@ -69,6 +73,7 @@ die "usage: $0 sdldl\n" if true;
 
 foreach $foo(@foo){		# iterating over plurals
 	$foo .= $foo
+	next;		# like continue in C++
 }
 
 foreach $foo (keys %foo){		# iterates over keys
@@ -177,6 +182,7 @@ regex
 /\w/		# word [A-Za-z0-9_]
 /[^^-]/		# excludes caret or hyphen
 # [] character class, () grouping
+# embedd regex modifiers or disable them with (?i-x)
 # spaces are matched in char class or with x flag eg /   /x
 local $/;		# enable slurp mode; perldoc perlvar same as $/ = undef;
 # dynamic scoping?
@@ -195,12 +201,12 @@ while(<>){
 	# or if (!/^\d+\s+\w+/)
 	
 }
-m/foo/ means match
-\b is a boundary where oneside is \w and other is \W
-\B is the opposite
-//i flag: case insensitive
-$1 holds first term, $2 etc $rest?
-$1 holds first paren enclosed term, $2 etc
+m/foo/		# means match
+# \b is a boundary where oneside is \w and other is \W
+# \B is the opposite
+# //i flag: case insensitive
+# $1 holds first term, $2 etc $rest?
+# $1 holds first paren enclosed term, $2 etc
 while(<>){
 	s{foo|ba[rz] \s+ (\d+)}
 	{ uc($1) . ' ' . (1+$2)}eix		# evalutative subsitution, code	
@@ -208,29 +214,31 @@ while(<>){
 
 qr//		# quotes regexes to create a regex object
 my $indent = qr/[A-Za-z]/;
-qq//		# double quotes
+qq/awd/		# double quotes
 # capture buffers
 if($x =~ /(?<first> \w+) \s+
 	(?<second> \w+) /x)		# $first in addition to $1
+# access with $+{second}, stored in %+
+# # arbitrary quantification
+# =begin
+# {0,} == *
+# {0,1} == ?
+# {n} exactly n times
+# =cut
+# # nongreedy quantification
+# *?, +?, {n,m}?		# grabs as few as possible
+# # m flag so ^, /A and &, /Z match begin/end of any line instead of whole string
+# # s flag treats string as single line. . matches \n now
 
-# arbitrary quantification
-=begin
-{0,} == *
-{0,1} == ?
-{n} exactly n times
-=cut
-# nongreedy quantification
-*?, +?, {n,m}?		# grabs as few as possible
-# m flag so ^ and & match begin/end of any line instead of whole string
-# s flag treats string as single line. . matches \n now
-
-# backreferences
-/^(\S+) \s+ \1/x		# \1 matches first group, but maybe exponential runtime
-/\d+(?=\t)/		# doesn't consume tab
+# # backreferences
+# /^(\S+) \s+ \1/x		# \1 matches first group, but maybe exponential runtime
+# /\d+(?=\t)/		# doesn't consume tab
 
 # \G anchor of cursor, /g flag means \G at begining
-
-
+# /\Q |$^[]-+*\\E/ \Q and \E disable metacharacters
+# zero width assertions
+/cat(?!astrophe)/;		# don't match catastrophe
+/(?=Ind)ian/;		# match only if Indian
 
 
 

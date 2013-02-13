@@ -12,19 +12,19 @@ $DEBUG = 0;
 # Input
 while(<>){
 	chomp;
-	$block = qr/[\w\-]+/;
+	$block = qr/[\w-]+/;
 	$emailRE = qr/$block(\.$block)*\@$block(\.$block)*/;
 	
-	if (m/($emailRE)/){
-		push @emails, $1 unless exists $count{$1};
-		++$count{$1};
+	if (m/$emailRE/){
+		push @emails, $& unless exists $count{$&};
+		++$count{$&};
 	}
 }
-# say $1 if $DEBUG;
+# say $& if $DEBUG;
 
 printf "%i distinct address found.\n", scalar keys %count;
 
 # Sort
-@emails = sort {$count{$b} <=> $count{$a} || $a cmp $b} @emails;		# cmp is default sort
+@emails = sort {$count{$b} <=> $count{$a} || $a cmp $b} @emails;	# cmp is default sort
 # Output
 map {say qq/$_ ($count{$_})/} @emails;
