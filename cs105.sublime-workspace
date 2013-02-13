@@ -39,7 +39,7 @@
 			"file": "Makefile",
 			"settings":
 			{
-				"buffer_size": 275,
+				"buffer_size": 308,
 				"line_ending": "Unix"
 			}
 		},
@@ -47,7 +47,7 @@
 			"file": "hello.pl",
 			"settings":
 			{
-				"buffer_size": 5316,
+				"buffer_size": 5411,
 				"line_ending": "Unix"
 			}
 		},
@@ -256,7 +256,7 @@
 					"file": "Makefile",
 					"settings":
 					{
-						"buffer_size": 275,
+						"buffer_size": 308,
 						"regions":
 						{
 						},
@@ -282,7 +282,7 @@
 					"file": "hello.pl",
 					"settings":
 					{
-						"buffer_size": 5316,
+						"buffer_size": 5411,
 						"regions":
 						{
 						},
@@ -389,7 +389,7 @@
 		"width": 1542.0
 	},
 	"show_minimap": true,
-	"show_open_files": false,
+	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 202.0,
