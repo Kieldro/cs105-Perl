@@ -10,7 +10,6 @@
 # reference counting trace garbage collection
 # QED?
 # sed, awk, sh?
-# use named capture?
 # zerowidth assertions, lookahead look behind, variable width
 # 
 
@@ -240,6 +239,6 @@ if($x =~ /(?<first> \w+) \s+
 /cat(?!astrophe)/;		# don't match catastrophe
 /(?=Ind)ian/;		# match only if Indian
 
-
-
+	s/0{0,2}(\d+)/$1/g;
+		# removes leading 0s in ips
 

@@ -2,5 +2,8 @@
 
 use v5.10;
 
-"aauytt" =~ m/aa.{2}(?=tt)/x;
-say $&;
+$octet = qr/\d{3}/;
+while(<>){
+	s/0{0,2}(\d+)/$1/g;
+	print;
+}
