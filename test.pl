@@ -2,4 +2,5 @@
 
 use v5.10;
 
-say qw/r/;
+"aauytt" =~ m/aa.{2}(?=tt)/x;
+say $&;

@@ -12,7 +12,7 @@ $DEBUG = 0;
 # Input
 while(<>){
 	chomp;
-	$block = qr/[\w\-]+/;
+	$block = qr/[\w-]+/;
 	$emailRE = qr/$block(\.$block)*\@$block(\.$block)*/;
 	
 	if (m/$emailRE/){
