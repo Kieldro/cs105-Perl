@@ -25,3 +25,10 @@ Note that your script should pick out the two e-mail addresses in this
 paragraph, even though they are followed by periods, because the
 periods are part of the sentence containing the address, not the
 address itself.
+
+
+.sdf@som.com
+.@.
+-@-
+_@_
+ASDF.ASDF.asdf.0989@098--.asdf--.--sadf-

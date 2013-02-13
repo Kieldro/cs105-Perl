@@ -1,31 +1,30 @@
 #!/usr/bin/perl
 # Ian Buitrago
 # 2-18-2013
-# log: 1330-1500 2 hrs
-# Assignment 5: Reverse Polish Notation
+# log: 1330-1500 2.5 hrs
+# Assignment 5: Legitimate Business Purposes
 
-# use warnings;
+# use warnings; no warnings 'once';
 use v5.10;
-# no warnings 'once';
 
-$DEBUG = 1;
+$DEBUG = 0;
 
 # Input
 while(<>){
 	chomp;
-	$block = qr/[A-Za-z0-9\-_]+/;
+	$block = qr/[\w\-]+/;
 	$emailRE = qr/$block(\.$block)*\@$block(\.$block)*/;
 	
 	if (m/($emailRE)/){
-		push @list, $1;
-		++$hash{$1};
+		push @emails, $1 unless exists $count{$1};
+		++$count{$1};
 	}
 }
+# say $1 if $DEBUG;
 
-printf "%i distinct address found.\n", scalar keys %hash;
+printf "%i distinct address found.\n", scalar keys %count;
 
 # Sort
-@list = sort {$hash{$b} <=> $hash{$a} || $a cmp $b} @list;		# cmp is default sort
-
+@emails = sort {$count{$b} <=> $count{$a} || $a cmp $b} @emails;		# cmp is default sort
 # Output
-map {say qq/$_ ($hash{$_})/} @list;
+map {say qq/$_ ($count{$_})/} @emails;
