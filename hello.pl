@@ -141,6 +141,8 @@ say $a;		# prints with newline
 map {say} grep {!boring($_)};		# execute block for every element in list
 %b = map {$_ => ++ $c} @a;
 
+chr
+ord
 printf "%.3f\n", 3.1415;
 $a = sprintf "%.cf\n", 3.1415;		# doesn't print
 
@@ -193,7 +195,6 @@ if($_ =~ /^s* \w+ /){		# !~ opposite of =~
 	
 	
 }
-
 while(<>){
 	chomp;
 	die 'invalid input' unless /^\d+\s+\w+/;		# applied to $_
@@ -238,7 +239,7 @@ if($x =~ /(?<first> \w+) \s+
 # zero width assertions
 /cat(?!astrophe)/;		# don't match catastrophe
 /(?=Ind)ian/;		# match only if Indian
-
-	s/0{0,2}(\d+)/$1/g;
-		# removes leading 0s in ips
-
+/(?:nocapture)/
+s/0{0,2}(\d+)/$1/g;		# removes leading 0s in ips
+$contents = slurp($file);
+/(?<!JK)OK/		# negative lookbehind

@@ -1,6 +1,8 @@
 ASSIGNMENT = a5
 
-all: $(ASSIGNMENT)
+all:
+	clear
+	make $(ASSIGNMENT)
 
 a2: rainfall.pl
 	rainfall.pl < 2001rain.txt

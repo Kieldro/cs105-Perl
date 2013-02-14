@@ -12,14 +12,13 @@ $DEBUG = 0;
 
 # Input
 while(<>){
-	chomp;
 	$block = qr/[\w-]+/;
 	$emailRE = qr/$block(\.$block)*\@$block(\.$block)*/;
 	
 	++$count{$&} while (m/$emailRE/g);
 }
 
-printf "%i distinct address found.\n", scalar keys %count;
+printf "%i distinct addresses found.\n", scalar keys %count;
 
 # Sort by count then lexigraphcally
 @emails = sort {$count{$b} <=> $count{$a} || $a cmp $b} keys %count;	# cmp is default sort

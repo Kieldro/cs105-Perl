@@ -28,6 +28,8 @@ address itself.
 
 
 .sdf@som.com
+zxc@oiu.org.
+(qwe@asdf)
 .@.
 -@- ____@____
 _@_
@@ -36,3 +38,4 @@ ASDF.ASDF.asdf.0989@098--.asdf--.--sadf-
 @@
 1234
 1234.dfgh
+asdf@asdf@1234
