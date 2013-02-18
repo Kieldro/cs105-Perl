@@ -236,10 +236,13 @@ if($x =~ /(?<first> \w+) \s+
 
 # \G anchor of cursor, /g flag means \G at begining
 # /\Q |$^[]-+*\\E/ \Q and \E disable metacharacters
-# zero width assertions
+# zero width sasertions
 /cat(?!astrophe)/;		# don't match catastrophe
 /(?=Ind)ian/;		# match only if Indian
 /(?:nocapture)/
 s/0{0,2}(\d+)/$1/g;		# removes leading 0s in ips
 $contents = slurp($file);
 /(?<!JK)OK/		# negative lookbehind
+
+# references
+

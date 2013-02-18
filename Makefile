@@ -1,4 +1,4 @@
-ASSIGNMENT = a5
+ASSIGNMENT = a6
 
 all:
 	clear
@@ -15,6 +15,9 @@ a4:
 
 a5:
 	./email.pl  example1.txt 
+
+a6:
+	./multiply.pl 
 
 test:
 	./test.pl
