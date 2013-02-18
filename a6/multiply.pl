@@ -4,5 +4,8 @@ use v5.10;
 use matrix;
 
 
-foo();
-
+string();
+while(<>){
+	
+	
+}
