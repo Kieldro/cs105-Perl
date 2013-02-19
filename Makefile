@@ -14,8 +14,7 @@ a6: ; cd a6 ; ./multiply.pl input.in
  
 a7: ; echo BOOM; ./a7.pl
 
-test:
-	./test.pl
+test: ; ./test.pl
 
 turnin:
 	turnin --submit cdunham $(ASSIGNMENT) matrix.pm multiply.pl subtract.pl add.pl
