@@ -246,3 +246,13 @@ $contents = slurp($file);
 
 # references
 
+use package identifier;
+foo{
+	say 'hi';
+}
+use package main;
+@a;
+$a = \@a;
+bless $a, identifier;
+
+$a->foo;

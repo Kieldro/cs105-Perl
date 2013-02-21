@@ -2,8 +2,13 @@
 
 use v5.10;
 
-$octet = qr/\d{3}/;
-while(<>){
-	s/0{0,2}(\d+)/$1/g;
-	print;
+package identifier;
+sub foo{
+	say 'hi';
 }
+package main;
+@a;
+$a = \@a;
+bless $a, identifier;
+
+$a->foo;
