@@ -245,38 +245,22 @@ $contents = slurp($file);
 /(?<!JK)OK/		# negative lookbehind
 
 # references
-$href = {}		# creates unnamed reference to hash
-$aref = []		# creates unnamed reference to array
-%{$href}		# dereference
-%$href		# sugar?
-$href->{'key'}		# same as ${$href}{'key'}
 
-$a = {%{$href}};		# copies hash
-
-# autovivification
-for(1..2){
-	$a->[1]->{'2'} = 3;		# only works if the val is undef
-}
-# //= operator defined-or
-
-package identifier;
+use package identifier;
 foo{
 	say 'hi';
 }
-package main;		# default package
-identifier::foo();
+use package main;
 @a;
 $a = \@a;
 bless $a, identifier;
 
 $a->foo;
-# foo recieves the object as the first parameter 
 
-# objects are references in perl, blessed references
-my $bar = Foobar->new('baz');
-my $bar = new Foobar 'baz';
+%hofhash = (a => {...}, b => {..});		# returns a ref to anon hash
+@aoa = ([1..4],[qw/a b c/]);		# array of arrays
 
-do 'test.pl';		# executes pl file
-require is similar
-
-packages must be in the path @INC
+$aoa[0][0]		# 
+$aoa[0]		# ref to an array
+${$aoa[0]}[0]		# dereferences it and gets first val
+$aoa[0]->[0];		# equivalent

@@ -9,28 +9,23 @@
 use v5.10;
 use matrix;
 
-$DEBUG = 1;
-
-
 # Input
-# do{
-	$A = new();
-	$A->print();
-# }while(<>);
-
-
-$B = new();
-# say scalar @$B if $DEBUG;
+$A = matrix->new();
+$A->print();
+$B = matrix->new();
 $B->print();
 
 # say $$A[0][1];
 
-$C = bless [], matrix;		# TODO
-say scalar @$C;
-for ($r = 0; $r < scalar @$A; ++$r){
-	for ($c = 0; $c < scalar @B[$r]; ++$c){
-		$C[$r][$c] += $A[$r][$c] * $B[$r][$c];
-	}
-}
+# @v = ();
+# $v[0] = 3;
+# $v[1] = 7;
+# say @v;
 
+# $C = new();		# TODO
+# $C = bless [], matrix;
+# $C->print();
+# $$C[1] = [];
+# say scalar @$C;
+$C = $A * $B;
 $C->print();

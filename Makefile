@@ -17,7 +17,7 @@ a7: ; echo BOOM; ./a7.pl
 test: ; ./test.pl
 
 turnin:
-	turnin --submit cdunham $(ASSIGNMENT) matrix.pm multiply.pl subtract.pl add.pl
+	cd a6; turnin --submit cdunham $(ASSIGNMENT) matrix.pm multiply.pl subtract.pl add.pl
 	turnin --list cdunham $(ASSIGNMENT)
 
 .PHONY: a1 a2 a3 a4 a5 a6 a7 a8 test turnin
