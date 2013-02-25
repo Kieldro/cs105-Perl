@@ -12,11 +12,12 @@ use matrix;
 $DEBUG = 1;
 
 # Input
-$A = matrix->new();
-$A->print() if $DEBUG;
-$B = matrix->new();
-$B->print() if $DEBUG;
-
+for($i = 0; !eof; ++$i){
+	say q/eof: /. eof;
+	$A[$i] = matrix->new();
+	$A[$i]->print() if $DEBUG;
+	say q/BAM/;
+}
 # say $$A[0][1];
 
 # @v = ();
@@ -28,9 +29,14 @@ $B->print() if $DEBUG;
 # $C = bless [], matrix;
 # $C->print();
 # $$C[1] = [];
-# say scalar @$C;
-$C = $A * $B;
+say q/len A: /.scalar @A;
+
+for(@A){
+	$A = shift @A;
+	$B = shift @A;
+	unshift @A, $A * $B;
+}
 
 # Output
 say 'Product:';
-$C->print();
+$A[0]->print();

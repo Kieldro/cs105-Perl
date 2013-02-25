@@ -3,9 +3,16 @@
 use v5.10;
 use matrix;
 
-$A = matrix->new();
-$B = matrix->new();
+# Input
+for($i = 0; !eof; ++$i){
+	$A[$i] = matrix->new();
+	$A[$i]->print() if $DEBUG;
+}
 
-$C = $A + $B;
-say 'Sum:';
-$C->print();
+for(@A){
+	$A = shift @A;
+	$B = shift @A;
+	
+	say 'Sum:';
+	($A+$B)->print();
+}

@@ -48,6 +48,7 @@ sub add_row{
 };
 
 sub multiply{
+	say q/mult!/;
 	my $A = shift;
 	my $B = shift;
 	# say 'BAM ' . scalar @_;
