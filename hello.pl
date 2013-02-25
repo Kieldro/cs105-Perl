@@ -12,6 +12,7 @@
 # sed, awk, sh?
 # zerowidth assertions, lookahead look behind, variable width
 # hashtables?
+# project global variables
 
 =begin
 =cut

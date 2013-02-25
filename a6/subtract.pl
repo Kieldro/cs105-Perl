@@ -3,9 +3,16 @@
 use v5.10;
 use matrix;
 
-$A = matrix->new();
-$B = matrix->new();
+# Input
+while(!eof){
+	push @a, matrix->new();
+	$a[-1]->print() if $DEBUG;
+}
 
-$C = $A - $B;
-say 'Difference:';
-$C->print();
+for(@A){
+	$A = shift @A;
+	$B = shift @A;
+	
+	say 'Difference:';
+	($A - $B)->print();
+}

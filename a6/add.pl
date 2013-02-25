@@ -4,9 +4,9 @@ use v5.10;
 use matrix;
 
 # Input
-for($i = 0; !eof; ++$i){
-	$A[$i] = matrix->new();
-	$A[$i]->print() if $DEBUG;
+while(!eof){
+	push @a, matrix->new();
+	$a[-1]->print() if $DEBUG;
 }
 
 for(@A){
@@ -14,5 +14,5 @@ for(@A){
 	$B = shift @A;
 	
 	say 'Sum:';
-	($A+$B)->print();
+	($A + $B)->print();
 }

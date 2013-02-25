@@ -4,39 +4,32 @@
 # log:
 # 2/18		1700-1900		3 hrs
 # 2/25		0600-0900		3 hrs
+# 2/25		1100-1300		4 hrs
 # Assignment 6: Object-Oriented Matrices
 
 use v5.10;
 use matrix;
+$DEBUG = $matrix::DEBUG;
 
-$DEBUG = 1;
 
 # Input
-for($i = 0; !eof; ++$i){
-	say q/eof: /. eof;
-	$A[$i] = matrix->new();
-	$A[$i]->print() if $DEBUG;
-	say q/BAM/;
+while(!eof){
+	# say q/eof: /. eof;
+	push @a, matrix->new();
+	$a[-1]->print() if $DEBUG;
 }
-# say $$A[0][1];
-
-# @v = ();
-# $v[0] = 3;
-# $v[1] = 7;
-# say @v;
 
 # $C = new();		# TODO
-# $C = bless [], matrix;
-# $C->print();
-# $$C[1] = [];
-say q/len A: /.scalar @A;
+say q/len a: /.scalar @a;
 
-for(@A){
-	$A = shift @A;
-	$B = shift @A;
-	unshift @A, $A * $B;
+# Calculations
+for(@a){
+	$A = shift @a;
+	$B = shift @a;
+	unshift @a, $A * $B;
+	# say scalar @a;
 }
 
 # Output
 say 'Product:';
-$A[0]->print();
+($a[0])->print();
