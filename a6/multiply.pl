@@ -10,26 +10,9 @@ use matrix;
 
 $DEBUG = 1;
 
-string() if $DEBUG;
 
-while(<>){
-	last if scalar split == 0;
-	push @A, [split];
-	
-}
 
-while(<>){
-	next if scalar split == 0;
-	push @B, [split];
-	say scalar @B;
-	say split;
-	
-	# NEW(@A);
-	# NEW(@B);
-}
 
-sub NEW{
-	
-	
-	return @A;
-}
+$A = new();
+# say scalar @$A;
+$A->string('asd');

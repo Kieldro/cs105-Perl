@@ -245,14 +245,38 @@ $contents = slurp($file);
 /(?<!JK)OK/		# negative lookbehind
 
 # references
+$href = {}		# creates unnamed reference to hash
+$aref = []		# creates unnamed reference to array
+%{$href}		# dereference
+%$href		# sugar?
+$href->{'key'}		# same as ${$href}{'key'}
 
-use package identifier;
+$a = {%{$href}};		# copies hash
+
+# autovivification
+for(1..2){
+	$a->[1]->{'2'} = 3;		# only works if the val is undef
+}
+# //= operator defined-or
+
+package identifier;
 foo{
 	say 'hi';
 }
-use package main;
+package main;		# default package
+identifier::foo();
 @a;
 $a = \@a;
 bless $a, identifier;
 
 $a->foo;
+# foo recieves the object as the first parameter 
+
+# objects are references in perl, blessed references
+my $bar = Foobar->new('baz');
+my $bar = new Foobar 'baz';
+
+do 'test.pl';		# executes pl file
+require is similar
+
+packages must be in the path @INC
