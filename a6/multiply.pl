@@ -11,16 +11,13 @@ use v5.10;
 use matrix;
 $DEBUG = $matrix::DEBUG;
 
-
 # Input
 while(!eof){
 	# say q/eof: /. eof;
 	push @a, matrix->new();
 	$a[-1]->print() if $DEBUG;
 }
-
-# $C = new();		# TODO
-say q/len a: /.scalar @a;
+# say q/len a: /.scalar @a;
 
 # Calculations
 for(@a){
@@ -32,4 +29,4 @@ for(@a){
 
 # Output
 say 'Product:';
-($a[0])->print();
+$a[0]->print();

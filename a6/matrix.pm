@@ -16,9 +16,14 @@ sub new{
 	
 	while(<>){
 		# chomp;
-		last if /^\w*$/ and scalar @$self;		# exit loop if whitespace line
+		# say split;
+		if (!scalar split){
+			if (scalar @$self){ last }		# matrix done
+			else{ next }		# skip preceeding whitespace
+		}
 		
 		add_row($self, split);
+		# say scalar ($#{$$self[0]} + 1);
 	}
 	
 	return $self;
