@@ -11,7 +11,7 @@ use overload
 # Constructor
 sub new{
 	my $self = bless [];
-	say qq/BOOM/.$ARGV;
+	# say qq/BOOM/.$ARGV;
 	while(<>){
 		last if /^\w*$/;		# exit loop if whitespace line
 		# say split;
@@ -35,7 +35,6 @@ sub string{
 }
 
 sub print{
-	say 'POW';
 	my $self = shift;
 	say scalar @$self if $DEBUG;
 	print string($self);
@@ -51,21 +50,21 @@ sub add_row{
 sub multiply{
 	my $A = shift;
 	my $B = shift;
-	say 'BAM ' . scalar @_;
+	# say 'BAM ' . scalar @_;
 	my $C = bless [];		# TODO
 	
 	
 	say 'rows: ' . scalar @$A;
 	say 'cols: ' . ($#{$$B[0]} + 1);
 	say 'mth : ' . scalar @$B;
-	say q/BOOM / . $$A[1][0];
+	# say q/BOOM / . $$A[1][0];
 
 	
 	for ($r = 0; $r < scalar @$A; ++$r){
 		for ($c = 0; $c < $#{$$B[0]} + 1; ++$c){
 			for ($m = 0; $m < scalar @$B; ++$m){
 				$$C[$r][$c] += $$A[$r][$m] * $$B[$m][$c];
-				say q/BOOM/.$$C[$r][$c];
+				# say q/BOOM/.$$C[$r][$c];
 				# say $r;
 			}
 		}
@@ -84,13 +83,10 @@ sub add{
 	say 'rows: ' . scalar @$A;
 	say 'cols: ' . ($#{$$B[0]} + 1);
 	say 'mth : ' . scalar @$B;
-	say q/BOOM / . $$A[1][0];
-
 	
 	for ($r = 0; $r < scalar @$A; ++$r){
 		for ($c = 0; $c < $#{$$B[0]} + 1; ++$c){
 			$$C[$r][$c] = $$A[$r][$c] + $$B[$r][$c];
-			say q/BOOM/.$$C[$r][$c];
 			# say $r;
 		}
 	}
@@ -106,7 +102,6 @@ sub subtract{
 	say 'rows: ' . scalar @$A;
 	say 'cols: ' . ($#{$$B[0]} + 1);
 	say 'mth : ' . scalar @$B;
-	say q/BOOM / . $$A[1][0];
 	
 	for ($r = 0; $r < scalar @$A; ++$r){
 		for ($c = 0; $c < $#{$$B[0]} + 1; ++$c){

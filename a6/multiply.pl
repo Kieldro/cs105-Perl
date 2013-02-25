@@ -9,11 +9,13 @@
 use v5.10;
 use matrix;
 
+$DEBUG = 1;
+
 # Input
 $A = matrix->new();
-$A->print();
+$A->print() if $DEBUG;
 $B = matrix->new();
-$B->print();
+$B->print() if $DEBUG;
 
 # say $$A[0][1];
 
@@ -28,4 +30,7 @@ $B->print();
 # $$C[1] = [];
 # say scalar @$C;
 $C = $A * $B;
+
+# Output
+say 'Product:';
 $C->print();

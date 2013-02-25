@@ -7,4 +7,5 @@ $A = matrix->new();
 $B = matrix->new();
 
 $C = $A - $B;
+say 'Difference:';
 $C->print();
