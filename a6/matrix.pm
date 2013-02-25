@@ -1,37 +1,50 @@
 #!/usr/bin/perl
 
-# package matrix;
+# package Matrix;
 use v5.10;
+use overload
+
+'+' => \&add,
+'-' => \&subtract,
+'*' => \&multiply;
 
 # Constructor
 sub new{
+	my $self = bless [];
+	say qq/BOOM/.$ARGV;
 	while(<>){
-		last if /^\w+$/;		# exit loop if whitespace line
-		push @A, [split];
+		last if /^\w*$/;		# exit loop if whitespace line
+		# say split;
+		add_row($self, split);
 	}
+	return $self;
 	# say scalar @A;
-	return bless \@A;
+	# die;
 }
 
 sub string{
 	my $self = shift;
-	# say scalar @$self;
+	my $result = '';
+	
 	for $row (@$self){
-		print qq/@$row /;
-		# for(@$row){
-		# 	say $_;
-			
-		# }
-		say;
+		# say scalar @$row;
+		$result .= qq/@$row\n/;
 	}
+	
+	return $result;
 }
 
 sub print{
-	say q/hi/;
+	my $self = shift;
+	say scalar @$self if $DEBUG;
+	print string($self);
 }
 
 sub add_row{
-	
+	my $self = shift;
+	# say scalar @_;
+	push @$self, [@_];
+	# say scalar @$self;
 };
 
 1;		# must evalutate to true
