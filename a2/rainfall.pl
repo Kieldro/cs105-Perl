@@ -12,7 +12,6 @@ The number of days for which no data is available.
 while (<>){
 	# $_ constains end char
 	chomp;		# removes only line terminator, assumes $_
-	++$b;
 	if($_ >= 999.99){
 		++$NADays;
 	}elsif($_ eq 'T'){

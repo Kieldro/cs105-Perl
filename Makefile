@@ -10,7 +10,10 @@ a4: ; cd a4; ./calc.pl #< a4/2001Tmax.txt
 
 a5: ; cd a5; ./email.pl a5/example1.txt 
 
-a6: ; cd a6 ; ./multiply.pl input.in
+a6: 
+	cd a6 ; ./multiply.pl input.in
+	cd a6 ; ./add.pl input.in
+	cd a6 ; ./subtract.pl input.in
  
 a7: ; echo BOOM; ./a7.pl
 

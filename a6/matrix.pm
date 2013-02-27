@@ -1,4 +1,12 @@
 #!/usr/bin/perl
+# Ian Buitrago
+# 2-25-2013
+# log:
+# 2/18		1700-1900		3 hrs
+# 2/25		0600-0900		3 hrs
+# 2/25		1100-1300		4 hrs
+# 2/26		1800-1900		1 hrs
+# Assignment 6: Object-Oriented Matrices
 
 package matrix;
 use v5.10;
@@ -8,22 +16,19 @@ use overload
 '-' => \&subtract,
 '*' => \&multiply;
 
-$DEBUG = 1;
+$DEBUG = !1;
 
 # Constructor
 sub new{
 	my $self = bless [];
 	
 	while(<>){
-		# chomp;
-		# say split;
 		if (!scalar split){
 			if (scalar @$self){ last }		# matrix done
 			else{ next }		# skip preceeding whitespace
 		}
-		
+				
 		add_row($self, split);
-		# say scalar ($#{$$self[0]} + 1);
 	}
 	
 	return $self;
@@ -42,26 +47,24 @@ sub string{
 
 sub print{
 	my $self = shift;
-	# say 'dssdf: '.scalar @$self if $DEBUG;
 	print string($self);
 }
 
 sub add_row{
 	my $self = shift;
-	# say scalar @_;
 	push @$self, [@_];
-	# say scalar @$self;
 }
 
 sub multiply{
-	# say q/BOOM /;
 	my $A = shift;
 	my $B = shift;
-	my $C = bless [];		# TODO
+	my $C = bless [];
 	
-	say 'rows: ' . scalar @$A;
-	say 'cols: ' . ($#{$$B[0]} + 1);
-	say 'mth : ' . scalar @$B;
+	if ($DEBUG){
+		say 'rows: ' . scalar @$A;
+		say 'cols: ' . ($#{$$B[0]} + 1);
+		say 'mth : ' . scalar @$B;
+	}
 	
 	for ($r = 0; $r < scalar @$A; ++$r){
 		for ($c = 0; $c < $#{$$B[0]} + 1; ++$c){
@@ -71,72 +74,35 @@ sub multiply{
 		}
 	}
 	
-	$C->print();
+	$C->print() if $DEBUG;
 	
 	return $C;
 }
 
-sub add{
+sub add     { binaryOp(@_[0,1], sub{$_[0] + $_[1]}); }
+sub subtract{ binaryOp(@_[0,1], sub{$_[0] - $_[1]}); }
+
+# factored out code
+sub binaryOp{
 	my $A = shift;
 	my $B = shift;
-	my $C = bless [];		# TODO
+	my $C = bless [];
+	my $op = pop;
 	
-	say 'rows: ' . scalar @$A;
-	say 'cols: ' . ($#{$$B[0]} + 1);
-	say 'mth : ' . scalar @$B;
+	if ($DEBUG){
+		say ref $op;
+		say 'rows: ' . scalar @$A;
+		say 'cols: ' . ($#{$$B[0]} + 1);
+		say 'mth : ' . scalar @$B;
+	}
 	
 	for ($r = 0; $r < scalar @$A; ++$r){
 		for ($c = 0; $c < $#{$$B[0]} + 1; ++$c){
-			$$C[$r][$c] = $$A[$r][$c] + $$B[$r][$c];
-			# say $r;
+			$$C[$r][$c] = &$op($$A[$r][$c], $$B[$r][$c]);
 		}
 	}
 	
 	return $C;
 }
-
-sub subtract{
-	# binaryOp(@_, _sub_{$_[0] - $_[1]});
-	
-	my $A = shift;
-	my $B = shift;
-	my $C = bless [];		# TODO
-	
-	say 'rows: ' . scalar @$A;
-	say 'cols: ' . ($#{$$B[0]} + 1);
-	say 'mth : ' . scalar @$B;
-	
-	for ($r = 0; $r < scalar @$A; ++$r){
-		for ($c = 0; $c < $#{$$B[0]} + 1; ++$c){
-			$$C[$r][$c] = $$A[$r][$c] - $$B[$r][$c];
-		}
-	}
-	
-	return $C;
-}
-
-# sub binaryOp{
-# 	my $A = shift;
-# 	my $B = shift;
-# 	pop;
-# 	my $C = bless [];		# TODO
-# 	$foo = pop;
-	
-# 	say 'rows: ' . scalar @$A;
-# 	say 'cols: ' . ($#{$$B[0]} + 1);
-# 	say 'mth : ' . scalar @$B;
-	
-# 	for ($r = 0; $r < scalar @$A; ++$r){
-# 		for ($c = 0; $c < $#{$$B[0]} + 1; ++$c){
-# 			$$C[$r][$c] = $op($$A[$r][$c], $$B[$r][$c]);
-# 		}
-# 	}
-	
-# 	return $C;
-# }
-
-# sub subOp{
-	
-# }
 
 1;		# must evalutate to true
