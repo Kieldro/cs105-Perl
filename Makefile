@@ -1,4 +1,4 @@
-ASSIGNMENT = a6
+ASSIGNMENT = a7
 
 all: ; clear; make $(ASSIGNMENT)
 
@@ -15,12 +15,14 @@ a6:
 	cd a6 ; ./add.pl input.in
 	cd a6 ; ./subtract.pl input.in
  
-a7: ; echo BOOM; ./a7.pl
+a7: ; cd a7; ./a7.pl
+
+final: ; cd final; ./final.pl
 
 test: ; ./test.pl
 
 turnin:
-	cd a6; turnin --submit cdunham $(ASSIGNMENT) matrix.pm multiply.pl subtract.pl add.pl
+	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) a7.pl
 	turnin --list cdunham $(ASSIGNMENT)
 
-.PHONY: a1 a2 a3 a4 a5 a6 a7 a8 test turnin
+.PHONY: a1 a2 a3 a4 a5 a6 a7 final test turnin
