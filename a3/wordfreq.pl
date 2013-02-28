@@ -3,7 +3,6 @@
 # 2-4-2013
 # log: 2-4 3 hrs
 # Assignment 3: Word Frequencies
-# golfing?
 
 use v5.10;
 
@@ -11,12 +10,7 @@ while(<>){
 	@words_in_line = /[a-z](?:[a-z']*[a-z])?/ig;
 	
 	foreach (@words_in_line){
-		$_ = lc $_;		# lower case
-		unless (exists $count{$_}){
-			$count{$_} = 1;
-		}else{
-			++$count{$_};
-		}
+		++$count{lc $_};
 	}
 	
 }

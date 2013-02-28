@@ -35,7 +35,7 @@ sub new{
 }
 
 sub string{
-	my $self = shift;
+	my ($self,) = @_;
 	my $result = '';
 	
 	for my $row (@$self){
@@ -46,7 +46,7 @@ sub string{
 }
 
 sub print{
-	my $self = shift;
+	my ($self,) = @_;
 	print string($self);
 }
 
@@ -56,8 +56,7 @@ sub add_row{
 }
 
 sub multiply{
-	my $A = shift;
-	my $B = shift;
+	my ($A, $B) = @_;
 	my $C = bless [];
 	
 	if ($DEBUG){
@@ -84,10 +83,8 @@ sub subtract{ binaryOp(@_[0,1], sub{$_[0] - $_[1]}); }
 
 # factored out code
 sub binaryOp{
-	my $A = shift;
-	my $B = shift;
+	my ($A, $B, $op) = @_;
 	my $C = bless [];
-	my $op = pop;
 	
 	if ($DEBUG){
 		say ref $op;

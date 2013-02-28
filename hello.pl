@@ -13,6 +13,7 @@
 # zerowidth assertions, lookahead look behind, variable width
 # hashtables?
 # project global variables
+# web scraping
 
 =begin
 =cut
@@ -265,3 +266,4 @@ $aoa[0][0]		#
 $aoa[0]		# ref to an array
 ${$aoa[0]}[0]		# dereferences it and gets first val
 $aoa[0]->[0];		# equivalent
+
