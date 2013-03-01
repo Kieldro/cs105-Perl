@@ -46,7 +46,7 @@ sub string{
 }
 
 sub print{
-	my ($self,) = @_;
+	my ($self) = @_;
 	print string($self);
 }
 
