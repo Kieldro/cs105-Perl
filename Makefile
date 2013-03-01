@@ -15,14 +15,14 @@ a6:
 	cd a6 ; ./add.pl input.in
 	cd a6 ; ./subtract.pl input.in
  
-a7: ; cd a7; ./a7.pl
+a7: ; cd a7; ./golf.pl input.in
 
 final: ; cd final; ./final.pl
 
 test: ; ./test.pl
 
 turnin:
-	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) a7.pl
+	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) golf.pl
 	turnin --list cdunham $(ASSIGNMENT)
 
 .PHONY: a1 a2 a3 a4 a5 a6 a7 final test turnin

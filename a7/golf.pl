@@ -8,12 +8,20 @@
 use v5.10;
 
 $DEBUG = 1;
-for(1..7){
-	$pid = fork();
-	say $pid if $pid;
+
+# Input
+while(<>){
+	chomp;
+	push @grid, [split //];
+	say @{$grid[-1]};
 }
-# if(1){		# path found
-# 	say 1;
-# }else{		# no path
-# 	say 0;
-# }
+say scalar @{$grid[-1]};
+say scalar @grid;
+
+
+
+if(1){		# path found
+	say 1;
+}else{		# no path
+	say 0;
+}
