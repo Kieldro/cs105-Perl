@@ -13,7 +13,9 @@
 # zerowidth assertions, lookahead look behind, variable width
 # hashtables?
 # project global variables
-# web scraping
+# web scraping2 perl hashbangs?
+# +-e $infile
+# +    or die?
 
 =begin
 =cut
