@@ -28,7 +28,7 @@ if($DEBUG){
 }
 
 # Calculations
-for ($c = 0; $c < keys @{$grid[0]}; ++$c){
+for ($col = 0, $row = 0; $col < keys @{$grid[0]}; ++$col){
 	$_ = $grid[0][$c];
 	next unless /x/;
 	
@@ -53,28 +53,38 @@ say 0;		# no path found
 
 
 sub search{
-	$r = 0;
-	# say '$_: '.$_;
-	# $_ = '*';
-	$grid[$r][$c] = '*';
-	$explored{\$_} = 1;		# current node set to explored
-	# say @{$grid[0]};
+	push @frontier, [$row, $col];
 	
-	# explore right
-	++$c;
-	if(inBounds($r, $c) and $grid[$r][$c] == 'x'){
-		pathFound($r, $c);		# check for win
-		$grid[$r][$c];
+	while (scalar @frontier){
+		# say scalar @frontier;
+		my ($r, $c) = @{shift @frontier};
+		# say $r.$c;
+		$grid[$r][$c] = '*';		# current node set to explored
+		# say @{$grid[0]};
+		
+		check($r, $c + 1);		# check right
+		check($r + 1, $c);		# check bottom
+		check($r - 1, $c);		# check top
+		check($r, $c - 1);		# check left
+		printGrid() if $DEBUG;
 	}
-	
-	
+}
+
+sub check{
+	my ($r, $c) = @_;
+	if(inBounds($r, $c) and $grid[$r][$c] eq 'x'){
+		pathFound($r, $c);		# check for win
+		push @frontier, [$r, $c];
+		$grid[$r][$c] = 'F';
+	}
 }
 
 # Checks win condition.
 # Prints 1 and exits if true.
 sub pathFound{
 	my($r, $c) = @_;
-	if ($r == $nrows - 1 and $grid[$r][$c] == /x/){		# path found
+	if ($r == $nrows - 1 and $grid[$r][$c] =~ /x/){		# path found
+		printGrid() if $DEBUG;
 		print 'PATH FOUND! ' if $DEBUG;
 		say 1 and exit;
 	}
@@ -83,7 +93,7 @@ sub pathFound{
 # Returns true if $r and $c are in bounds, false otherwise
 sub inBounds{
 	my($r, $c) = @_;
-	return $r >= 0 and $c >= 0 and $r < $nrows and $c < $ncols;
+	return ($r >= 0 and $c >= 0 and $r < $nrows and $c < $ncols);
 }
 
 sub printGrid{

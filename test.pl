@@ -2,16 +2,14 @@
 
 use v5.10;
 
-# package identifier;
-# sub foo{
-# 	say 'hi';
-# }
-# package main;
-# @a;
-# $a = \@a;
-# bless $a, identifier;
+$user = 'jwilke';
+@machines = qw/seafoam/;# lust milky-way/;
+$pw = ';lkj1234';
 
-# $a->foo;
-
-$b = [1, 2, 3];
-say @$b;		# interesting
+foreach (@machines){
+	say 'boom';
+	system qq/ssh keo\@$_.cs.utexas.edu/;
+	system qq/$pw/;
+	# system qq/finger $user/;
+	# system "exit";
+}
