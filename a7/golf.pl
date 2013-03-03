@@ -10,7 +10,7 @@
 
 use v5.10;
 
-$DEBUG = 1;
+$DEBUG = !1;
 
 # Input
 while(<>){

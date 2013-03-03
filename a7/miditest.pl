@@ -2,7 +2,7 @@
 
 # version 1.6 - 27 tests
 
-# use File::Slurp;
+use File::Slurp;
 # use strict;	
 $| = 1;
 
@@ -18,7 +18,7 @@ my $n;
 for (@cases)
 	{
 	my ($d, $want) = @$_;
-	# write_file 'tmp1', $d;
+	write_file 'tmp1', $d;
 	my $display = "----------\n$d----------\n";
 	#print $display; $display = '';
 	my $got = `$^X $filename <tmp1 2>err.tmp`;

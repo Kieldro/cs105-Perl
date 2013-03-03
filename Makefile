@@ -15,7 +15,7 @@ a6:
 	cd a6 ; ./add.pl input.in
 	cd a6 ; ./subtract.pl input.in
  
-a7: ; cd a7; ./golf.pl input.in
+a7: ; cd a7; ./miditest.pl
 
 final: ; cd final; ./final.pl
 
