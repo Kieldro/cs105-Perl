@@ -2,14 +2,41 @@
 
 # version 1.6 - 27 tests
 
-use File::Slurp;
-use strict;
+# use File::Slurp;
+# use strict;	
 $| = 1;
 
 my $filename = shift || 'golf.pl';
+# @cases;
+loadCases();
 
-my @cases = (
+my $script = read_file $filename;
+s/^\s*__END__.*//ms, s/\s*\z/\n/ for $script;
+my $score = length($script) - 8;
+print "$script\nscore: $score\n";
+my $n;
+for (@cases)
+	{
+	my ($d, $want) = @$_;
+	# write_file 'tmp1', $d;
+	my $display = "----------\n$d----------\n";
+	#print $display; $display = '';
+	my $got = `$^X $filename <tmp1 2>err.tmp`;
+	if(-s 'err.tmp')
+		{
+		print read_file 'err.tmp';
+		die "${display}printed to STDERR";
+		}
+	(my $show = $got)=~s/\n/\\n/g;
+	die "${display}failed, got \"$show\", wanted $want" unless "$want\n" eq $got;
+	printf "%3d: correctly found $want\n", ++$n;
+	}
+print "\nPASSED\n\n";
+print "$script\nscore: $score\n";
+append_file 'run.log', "score: $score\n$script\n";
 
+sub loadCases{
+@cases = (
 [<<END, 1],
 x x     x 
 x x xxx xx
@@ -363,28 +390,4 @@ xxx xxx
 END
 
 	);
-
-my $script = read_file $filename;
-s/^\s*__END__.*//ms, s/\s*\z/\n/ for $script;
-my $score = length($script) - 8;
-print "$script\nscore: $score\n";
-my $n;
-for (@cases)
-	{
-	my ($d, $want) = @$_;
-	write_file 'tmp1', $d;
-	my $display = "----------\n$d----------\n";
-	#print $display; $display = '';
-	my $got = `$^X $filename <tmp1 2>err.tmp`;
-	if(-s 'err.tmp')
-		{
-		print read_file 'err.tmp';
-		die "${display}printed to STDERR";
-		}
-	(my $show = $got)=~s/\n/\\n/g;
-	die "${display}failed, got \"$show\", wanted $want" unless "$want\n" eq $got;
-	printf "%3d: correctly found $want\n", ++$n;
-	}
-print "\nPASSED\n\n";
-print "$script\nscore: $score\n";
-append_file 'run.log', "score: $score\n$script\n";
+}
