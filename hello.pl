@@ -269,3 +269,6 @@ $aoa[0]		# ref to an array
 ${$aoa[0]}[0]		# dereferences it and gets first val
 $aoa[0]->[0];		# equivalent
 
+# spinny \b disable output buffering
+# final: cache, skip movies?
+# no need for more than everyones bacon number if clever
