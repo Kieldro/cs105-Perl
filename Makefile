@@ -1,4 +1,4 @@
-ASSIGNMENT = a7
+ASSIGNMENT = final
 
 all: ; clear; make $(ASSIGNMENT)
 
@@ -17,12 +17,12 @@ a6:
  
 a7: ; cd a7; ./miditest.pl
 
-final: ; cd final; ./final.pl
+final: ; cd final; ./final.pl /u/cdunham/cs105/*.list.gz
 
 test: ; ./test.pl
 
 turnin:
-	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) golf.pl
+	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) final.pl
 	turnin --list cdunham $(ASSIGNMENT)
 
 .PHONY: a1 a2 a3 a4 a5 a6 a7 final test turnin
