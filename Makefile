@@ -1,4 +1,4 @@
-ASSIGNMENT = a7
+ASSIGNMENT = final
 
 all: ; clear; make $(ASSIGNMENT)
 
@@ -6,9 +6,9 @@ a2: ; cd a2; ./rainfall.pl < 2001rain.txt
 
 a3: ; cd a3; ./wordfreq.pl pandp.txt #| less
 
-a4: ; cd a4; ./calc.pl #< a4/2001Tmax.txt 
+a4: ; cd a4; ./calc.pl < 2001Tmax.txt 
 
-a5: ; cd a5; ./email.pl a5/example1.txt 
+a5: ; cd a5; ./email.pl example1.txt 
 
 a6: 
 	cd a6 ; ./multiply.pl input.in
@@ -17,12 +17,12 @@ a6:
  
 a7: ; cd a7; ./miditest.pl
 
-final: ; cd final; ./final.pl
+final: ; cd final; ./final.pl /u/cdunham/cs105/*.list.gz
 
 test: ; ./test.pl
 
 turnin:
-	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) golf.pl
+	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) final.pl
 	turnin --list cdunham $(ASSIGNMENT)
 
 .PHONY: a1 a2 a3 a4 a5 a6 a7 final test turnin

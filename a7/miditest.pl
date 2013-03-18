@@ -7,7 +7,6 @@ use File::Slurp;
 $| = 1;
 
 my $filename = shift || 'golf.pl';
-# @cases;
 loadCases();
 
 my $script = read_file $filename;
