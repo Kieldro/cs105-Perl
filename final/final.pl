@@ -13,14 +13,15 @@ use v5.10;
 $DEBUG = 1;
 
 # Preload data into hashes
+$actorRE = qr/^\w+, \w+/;
+$movieRE = qr/^\w+/;
 while(<>){
 	chomp;
 	
-	# movie
-	if(/^\t+/){
-		$hash{$key} = movie;
-	}else{
-		$key = actor;
+	if(/($actorRE)\t+($movie)$/i){
+		$key = $1;
+	}else(/^\t+($movie)/){
+		$hash{$key} = $2;
 	}
 	
 }
