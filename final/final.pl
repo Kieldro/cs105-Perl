@@ -12,7 +12,16 @@ use v5.10;
 
 $DEBUG = 1;
 
+# Graph with Nodes as Actors and Edges as Movies
+# Cycles will be prevented through "discovering" nodes
+
 # Preload data into hashes
+# Start by adding actor to stack, then create edges (movies) actor has played in, ???
+# One thing I see that could happen is an actor's hash holds a list of movies (edges), 
+# when we look at the next actor we can access all previous actors hashes and search for the movie, 
+# if found then we add an edge between the two actors
+
+# Split regex into smaller pieces
 while(<>){
 	chomp;
 	
