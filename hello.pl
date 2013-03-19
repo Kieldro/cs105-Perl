@@ -246,7 +246,7 @@ if($x =~ /(?<first> \w+) \s+
 /(?:nocapture)/
 s/0{0,2}(\d+)/$1/g;		# removes leading 0s in ips
 $contents = slurp($file);
-/(?<!JK)OK/		# negative lookbehind
+/(?<!JK)OK/		# negative lookelsebehind
 
 # references
 

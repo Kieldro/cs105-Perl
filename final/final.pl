@@ -4,9 +4,9 @@
 # 4-2-2013
 # log:
 # 3/4		1800-1900		1 hrs
-# Total:					1 hrs
+# 3/19		1200-1400		2 hrs
+# Total:					3 hrs
 # Final Project: The Six Degrees of Kevin Bacon
-
 
 use v5.10;
 
@@ -16,8 +16,12 @@ $DEBUG = 1;
 # Cycles will be prevented through "discovering" nodes
 
 # Preload data into hashes
-$actorRE = qr/^\w+, \w+/;
-$movieRE = qr/^\w+/;
+# Bacon, Kevin (I)	12th Annual Screen Actors Guild Awards (2006) (TV)  [Himself]
+$numeralRE = qr/[IVXLCDM]+/;
+$yearRE = qr/\(\d{4}\)/;
+$actorRE = qr/^(?<actor>\w+, \w+( \($numeralRE\))?)/;
+$titleRE = qr/(?<title>\t+.+)/;
+$movieRE = qr/\t+(?<movie>(?!")\w+.+(?!")\ $yearRE(?!\(TV|V|VG\)))/x;
 # Start by adding actor to stack, then create edges (movies) actor has played in, ???
 # One thing I see that could happen is an actor's hash holds a list of movies (edges), 
 # when we look at the next actor we can access all previous actors hashes and search for the movie, 
@@ -27,10 +31,18 @@ $movieRE = qr/^\w+/;
 while(<>){
 	chomp;
 	
-	if(/($actorRE)\t+($movie)$/i){
-		$key = $1;
-	}else(/^\t+($movie)/){
-		$hash{$key} = $2;
+	if(/$actorRE $titleRE/x){
+	# say 'GOOM' if '	test (2013)' =~ /$movieRE/;
+		$key = $+{actor};
+		say STDERR '$key: '.$key if $DEBUG;
+		$title = $+{title};
+			# say STDERR '$title: '.$title;
+		if($title =~ /$movieRE/){
+			say STDERR '$title: '.$+{movie};
+		}
+	}elsif(/$movieRE/){
+		$movie = $+{movie};
+		# say STDERR '$movie: '.$movie if $DEBUG;
 	}
 	
 }
