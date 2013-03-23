@@ -28,6 +28,9 @@ $movieRE = qr/\t+(?<movie>(?!")\w+.+(?!")\ $yearRE(?!\(TV|V|VG\)))/x;
 # if found then we add an edge between the two actors
 
 # Split regex into smaller pieces
+# foreach my $inFile (@ARGV) {
+# 	say "Opening $inFile...";
+# 	open IN, "zcat $inFile|" or die "Could not open $inFile: $!";
 while(<>){
 	chomp;
 	
@@ -36,7 +39,7 @@ while(<>){
 		$key = $+{actor};
 		say STDERR '$key: '.$key if $DEBUG;
 		$title = $+{title};
-			# say STDERR '$title: '.$title;
+			say STDERR '$title: '.$title;
 		if($title =~ /$movieRE/){
 			say STDERR '$title: '.$+{movie};
 		}

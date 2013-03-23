@@ -10,16 +10,16 @@ a4: ; cd a4; ./calc.pl < 2001Tmax.txt
 
 a5: ; cd a5; ./email.pl example1.txt 
 
-a6: 
+a6:
 	cd a6 ; ./multiply.pl input.in
 	cd a6 ; ./add.pl input.in
 	cd a6 ; ./subtract.pl input.in
- 
+
 a7: ; cd a7; ./miditest.pl
 
-final: ; cd final; ./final.pl /u/cdunham/cs105/*.list.gz
+final: ; cd final; ./final.pl input.sublist
 
-test: ; ./test.pl
+test: ; ./test.pl IntegerArray.txt
 
 turnin:
 	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) final.pl
