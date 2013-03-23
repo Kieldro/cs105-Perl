@@ -5,15 +5,21 @@
 # log:
 # 3/4		1800-1900		1 hrs
 # 3/19		1200-1400		2 hrs
-# Total:					3 hrs
+# 3/23 		0000-0200		2 hrs
+# Total:					5 hrs
 # Final Project: The Six Degrees of Kevin Bacon
 
 use v5.10;
+use actor;
+use movie;
 
 $DEBUG = 1;
 
 # Graph with Nodes as Actors and Edges as Movies
 # Cycles will be prevented through "discovering" nodes
+my $actorList = Actor->new();
+my $movieList = Movie->new();
+
 
 # Preload data into hashes
 # Bacon, Kevin (I)	12th Annual Screen Actors Guild Awards (2006) (TV)  [Himself]
@@ -45,6 +51,16 @@ while(<>){
 		# say STDERR '$movie: '.$movie if $DEBUG;
 	}
 	
+}
+
+# should have list of actors and movies by now, perform 
+# "bacon number computation"
+
+sub findBaconNumbers {
+	# start from people with Bacon in their name
+	my @bacons = $actorList->searchActors("bacon");
+	# either create a hash of all actors as keys that hash to their bacon number
+	# or do something alternate
 }
 
 # # Input from user

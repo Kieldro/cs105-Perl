@@ -20,3 +20,19 @@ sub addActor {
 	$self->{$actor} = @movies;
 }
 
+# returns a list of keys that may match the search query
+# TODO: make sure that name format (i.e. last, first) is taken care of
+# TODO: check if Upper or lower case matters
+sub searchActors {
+	my $self = shift;
+	# uppercasing the first letter
+	my $queryName = ucfirst(shift);
+	my @listOfMatches;
+	foreach $key(keys %{self}) {
+		if(index($key, $queryName) != -1) {
+			push(@listOfMatches, $key);
+		}
+	}
+	
+	return @listOfMatches;
+}
