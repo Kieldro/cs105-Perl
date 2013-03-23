@@ -14,4 +14,4 @@ a.out
 
 # repo specific
 *.app
-actors.list.gz
+*.list.gz
