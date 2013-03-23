@@ -13,26 +13,35 @@ sub new {
 }
 
 # adds an actor to hash with the list of his movies
+# note here that we're adding the reference to the array (syntax)
 sub addActor {
 	my $self = shift;
 	my $actor = shift;
 	my @movies = shift;
-	$self->{$actor} = @movies;
+	$self->{$actor} = \@movies;
 }
 
 # returns a list of keys that may match the search query
 # TODO: make sure that name format (i.e. last, first) is taken care of
-# TODO: check if Upper or lower case matters
 sub searchActors {
 	my $self = shift;
 	# uppercasing the first letter
 	my $queryName = ucfirst(shift);
-	my @listOfMatches;
-	foreach $key(keys %{self}) {
+	my @listOfActors;
+	foreach $key(keys %{$self}) {
 		if(index($key, $queryName) != -1) {
-			push(@listOfMatches, $key);
+			push(@listOfActors, $key);
 		}
 	}
 	
-	return @listOfMatches;
+	return @listOfActors;
+}
+
+# grabs the list of movies actor starred in
+# grab the reference and return the array
+sub getMoviesOfActor {
+	my $self = shift;
+	my $actor = shift;
+	my $refToMovies = $self->{$actor}
+	return @{$refToMovies};
 }
