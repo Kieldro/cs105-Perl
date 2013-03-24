@@ -1,25 +1,28 @@
-#!/usr/bin/perl
+#!/usr/bin/perl 
 
 use v5.10;
-use actor;
-use movie;
+use Actor;
+use Movie;
 
 my $actors = Actor->new();
 my $movies = Movie->new();
 
 my $actor = "Will Smith";
-my @movies = ["Independence Day", "I, Robot", "Insert Movie"];
+my @movies = ("Independence Day", "I, Robot", "Insert Movie");
+my $refToMovies = \@movies;
 
-$actors->addActor($actor, @movies);
+$actors->addActor($actor, $refToMovies);
 
 @listOfSmiths = $actors->searchActors("smith");
 
-@listOfMovies = $actors->getMoviesOfActor($actor);
+$refOfMovies = $actors->getMoviesOfActor($actor);
 
-while(@listOfSmiths) {
-	print "$_\n";
+foreach $smith (@listOfSmiths) {
+    print "found actor: $smith\n";
 }
 
-while(@listOfMovies) {
-	print "$_\n";
+my @movies = @{$refOfMovies};
+
+foreach $movie (@movies) {
+    print "found movie: $movie\n";
 }

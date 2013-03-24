@@ -8,7 +8,7 @@ sub new {
 	my %actors = {};
 	my $self = \%actors;
 	
-	bless $self, %actors, $class;
+	bless $self, $class;
 	return $self;
 }
 
@@ -17,8 +17,8 @@ sub new {
 sub addActor {
 	my $self = shift;
 	my $actor = shift;
-	my @movies = shift;
-	$self->{$actor} = \@movies;
+	my $refToMovies = shift;
+	$self->{$actor} = $refToMovies;
 }
 
 # returns a list of keys that may match the search query
@@ -42,6 +42,8 @@ sub searchActors {
 sub getMoviesOfActor {
 	my $self = shift;
 	my $actor = shift;
-	my $refToMovies = $self->{$actor}
-	return @{$refToMovies};
+	my $refToMovies = $self->{$actor};
+	
+	return $refToMovies;
 }
+1;

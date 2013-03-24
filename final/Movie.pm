@@ -8,7 +8,7 @@ sub new {
 	my %movies = {};
 	my $self = \%movies;
 	
-	bless $self, %movies, $class;
+	bless $self, $class;
 	return $self;
 }
 
@@ -20,5 +20,4 @@ sub addMovie {
 	my @actors = shift;
 	$self->{$movie} = @actors;
 }
-
-
+1;
