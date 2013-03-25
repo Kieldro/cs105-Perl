@@ -26,8 +26,7 @@ $DEBUG = 1;
 $numeralRE = qr/[IVXLCDM]+/;
 $yearRE = qr/\(\d{4}\)/;
 $actorRE = qr/^(?<actor>.+, \w+( \($numeralRE\))?)\t+/;
-# $titleRE = qr/\t+(?<title>.+)/;
-$movieRE = qr/\t+(?<movie>(?!")\w+.+(?!") $yearRE (?!\(TV|V|VG\)))/;
+$movieRE = qr/\t+(?<movie>(?!")[\w\d ,]+(?!") $yearRE(  \[.+\])?(  <\d+>)?)(?! \(V\))(?! \(TV\))(?! \(VG\))/;
 # Start by adding actor to stack, then create edges (movies) actor has played in, ???
 # One thing I see that could happen is an actor's hash holds a list of movies (edges), 
 # when we look at the next actor we can access all previous actors hashes and search for the movie, 
@@ -55,8 +54,8 @@ foreach my $inFile (@ARGV) {
 			$movie = $+{movie};
 			say STDERR '$movie: '.$movie if $DEBUG;
 			
-			$actorHash{$actor} = $movie;
-			$movieHash{$movie} = $actor;
+			push @{$actorHash{$actor}}, $movie;
+			push @{$movieHash{$movie}}, $actor;
 		}
 	}
 }
@@ -64,6 +63,8 @@ foreach my $inFile (@ARGV) {
 # should have list of actors and movies by now, perform 
 # "bacon number computation"
 
+say @{$actorHash{"Bacon, Kevin (I)"}};
+say @{$movieHash{"A Few Good Men (1992)  [Capt. Jack Ross]  <4>"}};
 
 
  # Input from user

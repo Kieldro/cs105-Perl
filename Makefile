@@ -17,7 +17,7 @@ a6:
 
 a7: ; cd a7; ./miditest.pl
 
-final: ; cd final; ./final.pl input.sublist
+final: ; cd final; ./final.pl actors.sublist
 
 test: ; ./test.pl IntegerArray.txt
 

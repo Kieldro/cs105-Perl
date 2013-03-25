@@ -2,17 +2,11 @@
 
 use v5.10;
 
+push @{$hash{'str' }} 4;
+push @{$hash{'str' }}, 7;
 
-
-# foreach my $inFile (@ARGV) {
-	$inFile = "final/test.sublist.gz";
-	say "Opening $inFile...";
-	open IN, "zcat $inFile|" or die "Could not open $inFile: $!";
-	
-while(<IN>){
-	print;
-	
-}
+say ref	$hash{'str'};
+say @{$hash{'str'}};
 
 # while(<>){
 # 	# say;
