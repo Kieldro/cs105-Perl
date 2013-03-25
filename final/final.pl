@@ -15,25 +15,15 @@ use v5.10;
 
 $DEBUG = 1;
 
-# Graph with Nodes as Actors and Edges as Movies
-# Cycles will be prevented through "discovering" nodes
-# my $actorList = Actor->new();
-# my $movieList = Movie->new();
-
-
-# Preload data into hashes
-# Bacon, Kevin (I)	12th Annual Screen Actors Guild Awards (2006) (TV)  [Himself]
+# regex objects
 $numeralRE = qr/[IVXLCDM]+/;
+$title = qr/[\w\d ,]+/;
 $yearRE = qr/\(\d{4}\)/;
+$role = qr/\[.+\]/;
+$billing = qr/<\d+>/;
 $actorRE = qr/^(?<actor>.+, \w+( \($numeralRE\))?)\t+/;
-$movieRE = qr/\t+(?<movie>(?!")[\w\d ,]+(?!") $yearRE(  \[.+\])?(  <\d+>)?)(?! \(V\))(?! \(TV\))(?! \(VG\))/;
-# Start by adding actor to stack, then create edges (movies) actor has played in, ???
-# One thing I see that could happen is an actor's hash holds a list of movies (edges), 
-# when we look at the next actor we can access all previous actors hashes and search for the movie, 
-# if found then we add an edge between the two actors
+$movieRE = qr/\t+(?<movie>(?!")$title(?!") $yearRE(?:  $role)?(?:  $billing)?)(?! \(V\))(?! \(TV\))(?! \(VG\))/;
 
-
-# Split regex into smaller pieces
 foreach my $inFile (@ARGV) {
 	say "Opening $inFile...";
 	# open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
@@ -42,15 +32,10 @@ foreach my $inFile (@ARGV) {
 	while(<IN>){
 		chomp;
 		if(/$actorRE/){
-			# say '$_: '.$_ if $DEBUG;
-			# say 'GOOM' if '	test (2013)' =~ /$movieRE/;
 			$actor = $+{actor};
 			say STDERR '$actor: '.$actor if $DEBUG;
-			# $title = $+{title};
-			# say STDERR '$title: '.$title if $DEBUG;
 		}
 		if(/$movieRE/){
-			# say '$_: '.$_ if $DEBUG;
 			$movie = $+{movie};
 			say STDERR '$movie: '.$movie if $DEBUG;
 			
@@ -63,6 +48,14 @@ foreach my $inFile (@ARGV) {
 # should have list of actors and movies by now, perform 
 # "bacon number computation"
 
+# Graph with Nodes as Actors and Edges as Movies
+# Cycles will be prevented through "discovering" nodes
+# my $actorList = Actor->new();
+# my $movieList = Movie->new();
+# Start by adding actor to stack, then create edges (movies) actor has played in, ???
+# One thing I see that could happen is an actor's hash holds a list of movies (edges), 
+# when we look at the next actor we can access all previous actors hashes and search for the movie, 
+# if found then we add an edge between the two actors
 say @{$actorHash{"Bacon, Kevin (I)"}};
 say @{$movieHash{"A Few Good Men (1992)  [Capt. Jack Ross]  <4>"}};
 
@@ -74,6 +67,7 @@ say @{$movieHash{"A Few Good Men (1992)  [Capt. Jack Ross]  <4>"}};
 	
 	
 # }
+
 
 # sample output
 
