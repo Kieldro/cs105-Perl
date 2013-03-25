@@ -36,6 +36,29 @@ my $refToMovies = \@movies;
 $actors->addActor($actor, $refToMovies);
 $movies->addMovies($actor, $refToMovies);
 
+my $actor = "Bruce Willis";
+my @movies = ("B", "D");
+my $refToMovies = \@movies;
+
+$actors->addActor($actor, $refToMovies);
+$movies->addMovies($actor, $refToMovies);
+
+my $actor = "Ian Buitrago";
+my @movies = ("D", "E", "G");
+my $refToMovies = \@movies;
+
+$actors->addActor($actor, $refToMovies);
+$movies->addMovies($actor, $refToMovies);
+
+my $actor = "Lim Yo Hwan";
+my @movies = ("F", "G");
+my $refToMovies = \@movies;
+
+$actors->addActor($actor, $refToMovies);
+$movies->addMovies($actor, $refToMovies);
+
+
+
 # TESTING OUR ACTOR AND MOVIE OBJECTS
 
 #perform search for actor (useful when getting input)                           
@@ -67,9 +90,11 @@ print "\n\n\n\n\n";
 
 # bacon computation
 
+# NOTE: make sure when checking that we also account for actors
+# not connected at all, so we'd have to check existence on %baconNumbers
+
 #hash for storing our actors and their bacon numbers
 my %baconNumbers;
-my $baconTrack = 0;
 
 # queue for actors and movies 
 my @queueActors;
@@ -77,48 +102,44 @@ my @queueMovies;
 
 # start from people with Bacon in their name
 my @bacons = $actors->searchActors("bacon");
-push(@queueActors, @bacons);
 
-# continue until list of actors is exhausted (search through all)
+# add bacon people to hash as 0 (starting point)
+foreach $bacon (@bacons) {
+    $baconNumbers{$bacon} = 0;
+}
+
+push(@queueActors, @bacons);
 while(@queueActors) {
     #grabbing actor from queue
     my $actorName = shift(@queueActors);
 
-    #set actor's bacon number immediately 
-    $baconNumbers{$actorName} = $baconTrack;
-
     #grab all the movies actor was in
     my $refMovieList = $actors->getMoviesOfActor($actorName);
-    my @movieListOfActors = @{$refMovieList};
-
-    # last movie determines when we increase bacon level
-    $lastMovieOfActor = $movieListOfActors[-1];
+    my @movieListOfActor = @{$refMovieList}; 
 
     # put our list of movies into queue and iterate through
-    push(@queueMovies, @movieListOfActors);
+    push(@queueMovies, @movieListOfActor);
     while(@queueMovies) {
-	#grabbing movie from queue
+        #grabbing movie from queue
 	my $movieName = shift(@queueMovies);
-	
+
 	#grab all actors for the movieName
 	my $refActorList = $movies->getActorsOfMovie($movieName);
 	my @actorListOfMovies = @{$refActorList};
 
 	# check for actors that already processed bacon numbers
-	# this saves us from cycles, etc.
+	# those who do can be ignored, those who don't are added
+	# and pushed onto queue of actors for processing through
+	# their movie list (branching out from here)
 	foreach $actor (@actorListOfMovies) {
 	    if(!exists $baconNumbers{$actor}) {
+		$baconNumbers{$actor} = $baconNumbers{$actorName} + 1;
 		push(@queueActors, $actor);
 	    }
-	}
-
-	# checking for last movie to increment bacon distance
-	if($movieName eq $lastMovieOfActor) {
-	    $baconTrack++;
 	}
    }
 }
 
 print "BACON NUMBA COMPUTACION!\n\n";
-while (my ($k,$v)=each %baconNumbers) {print "$k $v\n"}
+while (my ($k,$v)=each %baconNumbers) {print "$k, $v\n"}
 
