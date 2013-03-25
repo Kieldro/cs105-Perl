@@ -5,18 +5,19 @@
 # log:
 # 3/4		1800-1900		1 hrs
 # 3/19		1200-1400		2 hrs
-# 3/23 		0000-0200		2 hrs
-# Total:					5 hrs
+# 3/23		0000-0200		2 hrs
+# 3/25		0900-1100		2 hrs
+# Total:					7 hrs
 # Final Project: The Six Degrees of Kevin Bacon
 
 use v5.10;
 use Actor;
 use Movie;
+
+$DEBUG = 1;
 # initialize hashes of actors and movies
 my $actors = Actor->new();
 my $movies = Movie->new();
-
-$DEBUG = 1;
 
 # regex objects
 $numeralRE = qr/[IVXLCDM]+/;
@@ -25,7 +26,7 @@ $yearRE = qr/\(\d{4}\)/;
 $role = qr/\[.+\]/;
 $billing = qr/<\d+>/;
 $actorRE = qr/^(?<actor>.+, \w+( \($numeralRE\))?)\t+/;
-$movieRE = qr/\t+(?<movie>(?!")$title(?!") $yearRE(?:  $role)?(?:  $billing)?)(?! \(V\))(?! \(TV\))(?! \(VG\))/;
+$movieRE = qr/\t+(?<movie>(?!")$title(?!") $yearRE)(?:  $role)?(?:  $billing)?(?! \(V\))(?! \(TV\))(?! \(VG\))/;
 
 foreach my $inFile (@ARGV) {
 	say "Opening $inFile...";
@@ -35,36 +36,37 @@ foreach my $inFile (@ARGV) {
 	while(<IN>){
 		chomp;
 		if(/$actorRE/){
-			#$actor = $+{actor};
-			$actors->addActor($actor);
-			say STDERR '$actor: '.$actor if $DEBUG;
+			$actor = $+{actor};		# this defines $actor and give a value to $actor
+			# say STDERR '$actor: '.$actor if $DEBUG;
 		}
 		if(/$movieRE/){
-			#$movie = $+{movie};
+			$movie = $+{movie};
+			# $actors->addActor($actor);		# TODO: this does not exisit
 			# Add our movie to our current actor
 			# and an actor to our current movie
 			$actors->addMovieToActor($actor, $movie);
 			$movies->addActorToMovie($actor, $movie);
 			
-			say STDERR '$movie: '.$movie if $DEBUG;
+			# say STDERR '$movie: '.$movie if $DEBUG;
 			
-			#push @{$actorHash{$actor}}, $movie;
-			#push @{$movieHash{$movie}}, $actor;
+			push @{$actorHash{$actor}}, $movie;
+			push @{$movieHash{$movie}}, $actor;
 		}
 	}
 }
 
-#say @{$actorHash{"Bacon, Kevin (I)"}};
+say STDERR keys %$movies;
 #say @{$movieHash{"A Few Good Men (1992)  [Capt. Jack Ross]  <4>"}};
 
+if(1){
 # should have list of actors and movies by now, perform 
 # "bacon number computation"
 
-#hash for storing our actors and their bacon numbers   
+# hash for storing our actors and their bacon numbers   
 my %baconNumbers;
 
-my @queueActors; # populated by grabbing from movies
-my @queueMovies; # populated by grabbing from actors
+my @queueActors;		# populated by grabbing from movies
+my @queueMovies;		# populated by grabbing from actors
 
 # start from people with Bacon in their name                             
 my @bacons = $actors->searchActors("bacon");
@@ -75,9 +77,9 @@ foreach $bacon (@bacons) {
 }
 
 push(@queueActors, @bacons);
-while(@queueActors) {
+foreach(@queueActors) {
     #grabbing actor from queue                                           
-    my $actorName = shift(@queueActors);
+    my $actorName = $_;
 
     #grab all the movies actor was in                                    
     my $refMovieList = $actors->getMoviesOfActor($actorName);
@@ -85,9 +87,9 @@ while(@queueActors) {
 
     # put our list of movies into queue and iterate through              
     push(@queueMovies, @movieListOfActor);
-    while(@queueMovies) {
+    foreach(@queueMovies) {
         #grabbing movie from queue                                       
-        my $movieName = shift(@queueMovies);
+        my $movieName = $_;
 
         #grab all actors for the movieName                               
         my $refActorList = $movies->getActorsOfMovie($movieName);
@@ -107,13 +109,20 @@ while(@queueActors) {
 
 print "BACON NUMBA COMPUTACION!\n\n";
 while (my ($k,$v)=each %baconNumbers) {print "$k, $v\n"}
+}
 
- # Input from user
-# while(<>){
+# Input from user
+# while(1){
 	
 # 	print 'Enter actor: ';
+# 	$query = <STDIN>;
+# 	chomp $query;
+# 	say $query if $DEBUG;
 	
-	
+# 	if($query eq ''){
+# 		say "Thank you for testing.";
+# 		exit;
+# 	}
 # }
 
 
