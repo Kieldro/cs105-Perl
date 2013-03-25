@@ -12,18 +12,15 @@ sub new {
 	return $self;
 }
 
-# whenever we add an actor, also need to add to movies list
-# TODO: make sure movie checks for empty list of actors and semi populated
-sub addMovies {
+# adds an actor to the list of our movie
+sub addActorToMovie {
     my $self = shift;
     my $actor = shift;
-    my $refToMoviesList = shift;
-    my @moviesList = @{$refToMoviesList};
-    foreach $movie (@moviesList) {
-	push(@{$self->{$movie}}, $actor);
-    }
+    my $movie = shift;
+    push @{$self->{$movie}}, $actor;
 }
 
+# gets all actors in the movie
 sub getActorsOfMovie {
     my $self = shift;
     my $movie = shift;

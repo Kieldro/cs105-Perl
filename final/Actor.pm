@@ -12,14 +12,14 @@ sub new {
 	return $self;
 }
 
-# adds an actor to hash with the list of his movies
-# note here that we're adding the reference to the array (syntax)
-sub addActor {
-	my $self = shift;
-	my $actor = shift;
-	my $refToMoviesList = shift;
-	$self->{$actor} = $refToMoviesList;
+# adds a movie to the list of our actor
+sub addMovieToActor {
+    my $self = shift;
+    my $actor = shift;
+    my $movie = shift;
+    push @{$self->{$actor}}, $movie;
 }
+
 
 # returns a list of keys that may match the search query
 # TODO: make sure that name format (i.e. last, first) is taken care of
