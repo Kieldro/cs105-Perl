@@ -2,38 +2,50 @@
 
 use v5.10;
 
-while(<>){
-	# say;
-	push @numbers, $_;
+
+
+# foreach my $inFile (@ARGV) {
+	$inFile = "final/test.sublist.gz";
+	say "Opening $inFile...";
+	open IN, "zcat $inFile|" or die "Could not open $inFile: $!";
+	
+while(<IN>){
+	print;
 	
 }
-say 'size '.scalar @numbers;
 
-@numbers = count(@numbers);
-
-say 'size '.scalar @numbers;
-say @numbers;
-
-sub count{
-	my @a = shift;
-	say @a;
-	my $len = scalar @a;
-	if($len < 2){
-		return @a;
-	}
-	my @b = count(@a[0, $len/2]);
-	my @c = count(@a[$len/2+1, -1]);
-	my @result;
+# while(<>){
+# 	# say;
+# 	push @numbers, $_;
 	
-	while(scalar @b and scalar @c){
+# }
+# say 'size '.scalar @numbers;
+
+# @numbers = count(@numbers);
+
+# say 'size '.scalar @numbers;
+# say @numbers;
+
+# sub count{
+# 	my @a = shift;
+# 	say @a;
+# 	my $len = scalar @a;
+# 	if($len < 2){
+# 		return @a;
+# 	}
+# 	my @b = count(@a[0, $len/2]);
+# 	my @c = count(@a[$len/2+1, -1]);
+# 	my @result;
+	
+# 	while(scalar @b and scalar @c){
 		
-		if($b[0] < $c[0]){
-			push @result, shift @b
-		}else{push @result, shift @c}
-	}
-	@a = @result;
-	return @a;
-}
+# 		if($b[0] < $c[0]){
+# 			push @result, shift @b
+# 		}else{push @result, shift @c}
+# 	}
+# 	@a = @result;
+# 	return @a;
+# }
 
 
 # $user = 'jwilke';

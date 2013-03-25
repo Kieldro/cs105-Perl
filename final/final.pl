@@ -25,33 +25,38 @@ $DEBUG = 1;
 # Bacon, Kevin (I)	12th Annual Screen Actors Guild Awards (2006) (TV)  [Himself]
 $numeralRE = qr/[IVXLCDM]+/;
 $yearRE = qr/\(\d{4}\)/;
-$actorRE = qr/^(?<actor>\w+, \w+( \($numeralRE\))?)/;
-$titleRE = qr/(?<title>\t+.+)/;
-$movieRE = qr/\t+(?<movie>(?!")\w+.+(?!")\ $yearRE(?!\(TV|V|VG\)))/x;
+$actorRE = qr/^(?<actor>.+, \w+( \($numeralRE\))?)\t+/;
+# $titleRE = qr/\t+(?<title>.+)/;
+$movieRE = qr/\t+(?<movie>(?!")\w+.+(?!") $yearRE (?!\(TV|V|VG\)))/;
 # Start by adding actor to stack, then create edges (movies) actor has played in, ???
 # One thing I see that could happen is an actor's hash holds a list of movies (edges), 
 # when we look at the next actor we can access all previous actors hashes and search for the movie, 
 # if found then we add an edge between the two actors
 
+
 # Split regex into smaller pieces
 foreach my $inFile (@ARGV) {
 	say "Opening $inFile...";
-	open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
+	# open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
+	open IN, "$inFile" or die "Could not open $inFile: $!";
+	
 	while(<IN>){
 		chomp;
-		
-		if(/$actorRE $titleRE/x){
-		# say 'GOOM' if '	test (2013)' =~ /$movieRE/;
-			$key = $+{actor};
-			say STDERR '$key: '.$key if $DEBUG;
-			$title = $+{title};
-				say STDERR '$title: '.$title;
-			if($title =~ /$movieRE/){
-				say STDERR '$title: '.$+{movie};
-			}
-		}elsif(/$movieRE/){
+		if(/$actorRE/){
+			# say '$_: '.$_ if $DEBUG;
+			# say 'GOOM' if '	test (2013)' =~ /$movieRE/;
+			$actor = $+{actor};
+			say STDERR '$actor: '.$actor if $DEBUG;
+			# $title = $+{title};
+			# say STDERR '$title: '.$title if $DEBUG;
+		}
+		if(/$movieRE/){
+			# say '$_: '.$_ if $DEBUG;
 			$movie = $+{movie};
-			# say STDERR '$movie: '.$movie if $DEBUG;
+			say STDERR '$movie: '.$movie if $DEBUG;
+			
+			$actorHash{$actor} = $movie;
+			$movieHash{$movie} = $actor;
 		}
 	}
 }
