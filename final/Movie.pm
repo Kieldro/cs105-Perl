@@ -12,12 +12,24 @@ sub new {
 	return $self;
 }
 
-# adds an actor to hash with the list of his movies
+# whenever we add an actor, also need to add to movies list
 # TODO: make sure movie checks for empty list of actors and semi populated
-sub addMovie {
-	my $self = shift;
-	my $movie = shift;
-	my @actors = shift;
-	$self->{$movie} = @actors;
+sub addMovies {
+    my $self = shift;
+    my $actor = shift;
+    my $refToMoviesList = shift;
+    my @moviesList = @{$refToMoviesList};
+    foreach $movie (@moviesList) {
+	push(@{$self->{$movie}}, $actor);
+    }
 }
+
+sub getActorsOfMovie {
+    my $self = shift;
+    my $movie = shift;
+    my $refToActors = $self->{$movie};
+
+    return $refToActors;
+}
+
 1;

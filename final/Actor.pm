@@ -17,8 +17,8 @@ sub new {
 sub addActor {
 	my $self = shift;
 	my $actor = shift;
-	my $refToMovies = shift;
-	$self->{$actor} = $refToMovies;
+	my $refToMoviesList = shift;
+	$self->{$actor} = $refToMoviesList;
 }
 
 # returns a list of keys that may match the search query

@@ -59,24 +59,9 @@ foreach my $inFile (@ARGV) {
 # should have list of actors and movies by now, perform 
 # "bacon number computation"
 
-# %baconNumbers = findBaconNumbers($actorList);
 
-# sub findBaconNumbers {
-# 	my $actorList = shift;
-# 	%baconNumbers = {};
-# 	# start from people with Bacon in their name
-# 	my @bacons = $actorList->searchActors("bacon");
-# 	# grab the movie list from each bacon 
-# 	while(@bacons) {
-# 		$actor = Actor->new();
-# 		$baconPerson = shift(@bacons);
-# 		@baconMovies = $actor->getMoviesOfActor($baconPerson);
-		
-# 	}
-# 	return %baconNumbers;
-# }
 
-# # Input from user
+ # Input from user
 # while(<>){
 	
 # 	print 'Enter actor: ';
