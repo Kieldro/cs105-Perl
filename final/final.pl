@@ -41,12 +41,14 @@ foreach my $inFile (@ARGV) {
 		}
 		if(/$movieRE/){
 			$movie = $+{movie};
-			# $actors->addActor($actor);		# TODO: this does not exisit
+
 			# Add our movie to our current actor
 			# and an actor to our current movie
+
 			$actors->addMovieToActor($actor, $movie);
 			$movies->addActorToMovie($actor, $movie);
 			
+
 			# say STDERR '$movie: '.$movie if $DEBUG;
 			
 			push @{$actorHash{$actor}}, $movie;
@@ -55,7 +57,11 @@ foreach my $inFile (@ARGV) {
 	}
 }
 
-say STDERR keys %$movies;
+#say STDERR keys %$actors;
+#print "\n\n\n";
+#say STDERR keys %$movies;
+
+
 #say @{$movieHash{"A Few Good Men (1992)  [Capt. Jack Ross]  <4>"}};
 
 if(1){
@@ -69,7 +75,7 @@ my @queueActors;		# populated by grabbing from movies
 my @queueMovies;		# populated by grabbing from actors
 
 # start from people with Bacon in their name                             
-my @bacons = $actors->searchActors("bacon");
+my @bacons = $actors->searchActors("Bacon, Kevin");
 
 # add bacon people to hash as 0 (starting point)                         
 foreach $bacon (@bacons) {
@@ -107,8 +113,8 @@ foreach(@queueActors) {
    }
 }
 
-print "BACON NUMBA COMPUTACION!\n\n";
-while (my ($k,$v)=each %baconNumbers) {print "$k, $v\n"}
+print "Printing out Actors and their Bacon Numbers: \n";
+while (my ($k,$v)=each %baconNumbers) {print "\t$k, $v\n"}
 }
 
 # Input from user
