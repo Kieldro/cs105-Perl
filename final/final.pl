@@ -31,13 +31,13 @@ $actorRE = qr/^(?<actor>.+, \w+( \($numeralRE\))?)\t+/;
 $movieRE = qr/\t+(?<movie>(?!")$title(?!") $yearRE)(?:  $role)?(?:  $billing)?(?! \(V\))(?! \(TV\))(?! \(VG\))/;
 
 foreach my $inFile (@ARGV) {
-	say "Opening $inFile...";
+	say "Opening $inFile..."	;
 	open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
 	# open IN, "$inFile" or die "Could not open $inFile: $!";
 	
 	say 'Extracting data...';
 	while(<IN>){
-		print STDERR ''.$spinner[++$i/10000 % @spinner]." \r";
+		print STDERR ''.$spinner[++$i/10000 % @spinner]."\r";
 		chomp;
 		if(/$actorRE/){
 			$actor = $+{actor};		# this defines $actor and give a value to $actor
