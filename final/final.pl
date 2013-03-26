@@ -32,7 +32,7 @@ foreach my $inFile (@ARGV) {
 	say "Opening $inFile...";
 	# open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
 	open IN, "$inFile" or die "Could not open $inFile: $!";
-	
+
 	while(<IN>){
 		chomp;
 		if(/$actorRE/){
@@ -47,10 +47,10 @@ foreach my $inFile (@ARGV) {
 
 			$actors->addMovieToActor($actor, $movie);
 			$movies->addActorToMovie($actor, $movie);
-			
+
 
 			# say STDERR '$movie: '.$movie if $DEBUG;
-			
+
 			push @{$actorHash{$actor}}, $movie;
 			push @{$movieHash{$movie}}, $actor;
 		}
@@ -64,10 +64,10 @@ foreach my $inFile (@ARGV) {
 
 #say @{$movieHash{"A Few Good Men (1992)  [Capt. Jack Ross]  <4>"}};
 
-# should have list of actors and movies by now, perform 
+# should have list of actors and movies by now, perform
 # "bacon number computation"
 
-# hash for storing our actors and their bacon numbers   
+# hash for storing our actors and their bacon numbers
 my %baconNumbers;
 
 my @queueActors;		# populated by grabbing from movies
@@ -129,7 +129,7 @@ while(1){
 		$query = $2.', '.$1;
 		say 'query: '.$query;
 	}
-	
+
 	# if we have more than 1 element, print list contents, otherwise
 	# we do the search
 	my @queryActors = $actors->searchActors($query);
@@ -141,7 +141,7 @@ while(1){
 	}
 	else {
 	my $search = shift @queryActors;
-	
+
 	# setting current bacon number to our search (eventually this will = 0)
 	my $currentBacon = $baconNumbers{$search};
 	# the path, we will print all of this junk out later
@@ -171,7 +171,7 @@ while(1){
 				}
 			}
 		}
-		
+
 		if(@movieList == 0 && @actorList == 0) {
 			#exhausted movie list, means infinite bacon number
 			$nogo = shift @path;
@@ -179,7 +179,7 @@ while(1){
 			last SEARCH;
 		}
 	}
-	
+
 	# search is finished
 	if($currentBacon == 0) {
 		while(@path) {

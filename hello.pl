@@ -3,8 +3,6 @@
 # The three principal virtues of a programmer are Laziness, Impatience, and Hubris. See the Camel Book for why.
 
 # questions
-# multiline
-# ./ in path?
 # fg?
 # Effective Perl Programming 2n ed*
 # reference counting trace garbage collection
@@ -13,11 +11,14 @@
 # zerowidth assertions, lookahead look behind, variable width
 # hashtables?
 # project global variables
-# web scraping2 perl hashbangs?
+# web scraping
+# 2 perl hashbangs?
 # +-e $infile
 # +    or die?
 
 =begin
+perl -i -lpe 's/\s+$//' file.c
+removes trailimh space
 =cut
 
 use v5.10;		# for say
