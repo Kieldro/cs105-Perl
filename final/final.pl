@@ -64,7 +64,6 @@ foreach my $inFile (@ARGV) {
 
 #say @{$movieHash{"A Few Good Men (1992)  [Capt. Jack Ross]  <4>"}};
 
-if(1){
 # should have list of actors and movies by now, perform 
 # "bacon number computation"
 
@@ -74,7 +73,7 @@ my %baconNumbers;
 my @queueActors;		# populated by grabbing from movies
 my @queueMovies;		# populated by grabbing from actors
 
-# Start our search at kevin bacon                         
+# Start our search at Kevin Bacon
 my @bacons = $actors->searchActors("Bacon, Kevin");
 # @bacons should only have Kevin bacon in it
 $bacon = shift(@bacons);
@@ -82,45 +81,54 @@ $baconNumbers{$bacon} = 0;
 
 push(@queueActors, $bacon);
 foreach(@queueActors) {
-    #grabbing actor from queue                                           
-    my $actorName = $_;
+	#grabbing actor from queue
+	my $actorName = $_;
 
-    #grab all the movies actor was in                                    
-    my $refMovieList = $actors->getMoviesOfActor($actorName);
-    my @movieListOfActor = @{$refMovieList};
+	#grab all the movies actor was in
+	my $refMovieList = $actors->getMoviesOfActor($actorName);
+	my @movieListOfActor = @{$refMovieList};
 
-    # put our list of movies into queue and iterate through              
-    push(@queueMovies, @movieListOfActor);
-    foreach(@queueMovies) {
-        #grabbing movie from queue                                       
-        my $movieName = $_;
+	# put our list of movies into queue and iterate through
+	push(@queueMovies, @movieListOfActor);
+	foreach(@queueMovies) {
+		#grabbing movie from queue
+		my $movieName = $_;
 
-        #grab all actors for the movieName                               
-        my $refActorList = $movies->getActorsOfMovie($movieName);
-        my @actorListOfMovies = @{$refActorList};
-        # check for actors that already processed bacon numbers          
-        # those who do can be ignored, those who don't are added         
-        # and pushed onto queue of actors for processing through         
-        # their movie list (branching out from here)                     
-        foreach $actor (@actorListOfMovies) {
-            if(!exists $baconNumbers{$actor}) {
-                $baconNumbers{$actor} = $baconNumbers{$actorName} + 1;
-                push(@queueActors, $actor);
-            }
-        }
-   }
+		#grab all actors for the movieName
+		my $refActorList = $movies->getActorsOfMovie($movieName);
+		my @actorListOfMovies = @{$refActorList};
+		# check for actors that already processed bacon numbers
+		# those who do can be ignored, those who don't are added
+		# and pushed onto queue of actors for processing through
+		# their movie list (branching out from here)
+		foreach $actor (@actorListOfMovies) {
+			if(!exists $baconNumbers{$actor}) {
+				$baconNumbers{$actor} = $baconNumbers{$actorName} + 1;
+				push(@queueActors, $actor);
+			}
+		}
+	}
 }
 
 print "Printing out Actors and their Bacon Numbers: \n";
 #while (my ($k,$v)=each %baconNumbers) {print "\tBacon Number: $v\tActor: $k\n"}
 
 # Input from user
- while(1){
+while(1){
 	# need to format so that our query can be read in as first name last name
 	# and arrange it into last name comma first name
- 	print 'Actor/Actress? (last name, first name) ';
- 	$query = <STDIN>;
+	print 'Actor/Actress? (last name, first name) ';
+	$query = <STDIN>;
 	chomp $query;
+	if($query eq ''){
+		say "Thank you for testing.";
+		exit;
+	}
+	say 'query: '.$query;
+	if($query =~ /(\w+) (\w+)/){
+		$query = $2.', '.$1;
+		say 'query: '.$query;
+	}
 	
 	# assume only 1 element, change later
 	my @queryActors = $actors->searchActors($query);
@@ -175,14 +183,6 @@ print "Printing out Actors and their Bacon Numbers: \n";
 			}
 		}
 	}
-
-# 	say $query if $DEBUG;
-
- 	if($query eq ''){
- 		say "Thank you for testing.";
- 		exit;
- 	}
- }
 }
 
 # sample output
