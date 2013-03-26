@@ -130,8 +130,16 @@ while(1){
 		say 'query: '.$query;
 	}
 	
-	# assume only 1 element, change later
+	# if we have more than 1 element, print list contents, otherwise
+	# we do the search
 	my @queryActors = $actors->searchActors($query);
+	if(scalar @queryActors > 1) {
+	    while(@queryActors) {
+		$actor = shift(@queryActors);
+		print "$actor\n";
+	    }
+	}
+	else {
 	my $search = shift @queryActors;
 	
 	# setting current bacon number to our search (eventually this will = 0)
@@ -182,6 +190,7 @@ while(1){
 				print "\t$movie\n";
 			}
 		}
+	}
 	}
 }
 
