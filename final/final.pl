@@ -114,23 +114,73 @@ foreach(@queueActors) {
 }
 
 print "Printing out Actors and their Bacon Numbers: \n";
-while (my ($k,$v)=each %baconNumbers) {print "\tBacon Number: $v\tActor: $k\n"}
-}
+#while (my ($k,$v)=each %baconNumbers) {print "\tBacon Number: $v\tActor: $k\n"}
 
 # Input from user
-# while(1){
+ while(1){
 	
-# 	print 'Enter actor: ';
-# 	$query = <STDIN>;
-# 	chomp $query;
-# 	say $query if $DEBUG;
+ 	print 'Enter actor (last name, first name): ';
+ 	$query = <STDIN>;
+	chomp $query;
 	
-# 	if($query eq ''){
-# 		say "Thank you for testing.";
-# 		exit;
-# 	}
-# }
+	# assume only 1 element, change later
+	my @queryActors = $actors->searchActors($query);
+	my $search = shift @queryActors;
+	
+	# setting current bacon number to our search (eventually this will = 0)
+	my $currentBacon = $baconNumbers{$search};
+	# the path, we will print all of this junk out later
+	my @path;
+	push(@path, $search);
+	SEARCH:
+	while($currentBacon != 0) {
+		# just grabbing movie list from our search
+		$refToMovies = $actors->getMoviesOfActor($search);
+		@movieList = @{$refToMovies};
+		MOVIE:
+		while(@movieList) {
+			# grabbing actor list from our movieList
+			my $movie = shift @movieList;
+			$refToActors = $movies->getActorsOfMovie($movie);
+			@actorList = @{$refToActors};
+			while(@actorList) {
+				$actor = shift @actorList;
+				# checks for bacon number one less, if so move to that actor
+				if( ($baconNumbers{$actor} + 1) == $currentBacon) {
+					# resetting, etc. etc.
+					push(@path, $movie);
+					push(@path, $actor);
+					$currentBacon--;
+					$search = $actor;
+					last MOVIE;
+				}
+			}
+		}
+		
+		if(@movieList == 0 && @actorList == 0) {
+			#exhausted movie list, means infinite bacon number
+			$nogo = shift @path;
+			say "Unable to find bacon number for $nogo\n";
+			last SEARCH;
+		}
+	}
+	
+	# search is finished
+	if($currentBacon == 0) {
+		print "Printing path: \n";
+		foreach $elt (@path) {
+			print "$elt\n";
+		}
+	}
 
+# 	say $query if $DEBUG;
+
+ 	if($query eq ''){
+ 		say "Thank you for testing.";
+ 		exit;
+ 	}
+ }
+}
 
 # sample output
 
