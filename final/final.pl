@@ -114,7 +114,7 @@ foreach(@queueActors) {
 }
 
 print "Printing out Actors and their Bacon Numbers: \n";
-while (my ($k,$v)=each %baconNumbers) {print "\t$k, $v\n"}
+while (my ($k,$v)=each %baconNumbers) {print "\tBacon Number: $v\tActor: $k\n"}
 }
 
 # Input from user
