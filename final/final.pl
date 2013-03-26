@@ -19,6 +19,8 @@ $DEBUG = 1;
 my $actors = Actor->new();
 my $movies = Movie->new();
 
+my @spinner = qw/| \/ - \\ /;
+
 # regex objects
 $numeralRE = qr/[IVXLCDM]+/;
 $title = qr/[\w\d ,]+/;
@@ -30,10 +32,12 @@ $movieRE = qr/\t+(?<movie>(?!")$title(?!") $yearRE)(?:  $role)?(?:  $billing)?(?
 
 foreach my $inFile (@ARGV) {
 	say "Opening $inFile...";
-	# open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
-	open IN, "$inFile" or die "Could not open $inFile: $!";
-
+	open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
+	# open IN, "$inFile" or die "Could not open $inFile: $!";
+	
+	say 'Extracting data...';
 	while(<IN>){
+		print STDERR ''.$spinner[++$i/10000 % @spinner]." \r";
 		chomp;
 		if(/$actorRE/){
 			$actor = $+{actor};		# this defines $actor and give a value to $actor
@@ -44,15 +48,11 @@ foreach my $inFile (@ARGV) {
 
 			# Add our movie to our current actor
 			# and an actor to our current movie
-
 			$actors->addMovieToActor($actor, $movie);
 			$movies->addActorToMovie($actor, $movie);
-
-
 			# say STDERR '$movie: '.$movie if $DEBUG;
-
-			push @{$actorHash{$actor}}, $movie;
-			push @{$movieHash{$movie}}, $actor;
+			# push @{$actorHash{$actor}}, $movie;
+			# push @{$movieHash{$movie}}, $actor;
 		}
 	}
 }
@@ -124,7 +124,7 @@ while(1){
 		say "Thank you for testing.";
 		exit;
 	}
-	say 'query: '.$query;
+	say 'query: '.$query if $DEBUG;
 	if($query =~ /(\w+) (\w+)/){
 		$query = $2.', '.$1;
 		say 'query: '.$query;
@@ -140,57 +140,57 @@ while(1){
 	    }
 	}
 	else {
-	my $search = shift @queryActors;
+		my $search = shift @queryActors;
 
-	# setting current bacon number to our search (eventually this will = 0)
-	my $currentBacon = $baconNumbers{$search};
-	# the path, we will print all of this junk out later
-	my @path;
-	push(@path, $search);
-	SEARCH:
-	while($currentBacon != 0) {
-		# just grabbing movie list from our search
-		$refToMovies = $actors->getMoviesOfActor($search);
-		@movieList = @{$refToMovies};
-		MOVIE:
-		while(@movieList) {
-			# grabbing actor list from our movieList
-			my $movie = shift @movieList;
-			$refToActors = $movies->getActorsOfMovie($movie);
-			@actorList = @{$refToActors};
-			while(@actorList) {
-				$actor = shift @actorList;
-				# checks for bacon number one less, if so move to that actor
-				if( ($baconNumbers{$actor} + 1) == $currentBacon) {
-					# resetting, etc. etc.
-					push(@path, $movie);
-					push(@path, $actor);
-					$currentBacon--;
-					$search = $actor;
-					last MOVIE;
+		# setting current bacon number to our search (eventually this will = 0)
+		my $currentBacon = $baconNumbers{$search};
+		# the path, we will print all of this junk out later
+		my @path;
+		push(@path, $search);
+		SEARCH:
+		while($currentBacon != 0) {
+			# just grabbing movie list from our search
+			$refToMovies = $actors->getMoviesOfActor($search);
+			@movieList = @{$refToMovies};
+			MOVIE:
+			while(@movieList) {
+				# grabbing actor list from our movieList
+				my $movie = shift @movieList;
+				$refToActors = $movies->getActorsOfMovie($movie);
+				@actorList = @{$refToActors};
+				while(@actorList) {
+					$actor = shift @actorList;
+					# checks for bacon number one less, if so move to that actor
+					if( ($baconNumbers{$actor} + 1) == $currentBacon) {
+						# resetting, etc. etc.
+						push(@path, $movie);
+						push(@path, $actor);
+						$currentBacon--;
+						$search = $actor;
+						last MOVIE;
+					}
+				}
+			}
+
+			if(@movieList == 0 && @actorList == 0) {
+				#exhausted movie list, means infinite bacon number
+				$nogo = shift @path;
+				say "Unable to find bacon number for $nogo\n";
+				last SEARCH;
+			}
+		}
+
+		# search is finished
+		if($currentBacon == 0) {
+			while(@path) {
+				my $actor = shift(@path);
+				print "$actor\n";
+				if(@path) {
+					my $movie = shift(@path);
+					print "\t$movie\n";
 				}
 			}
 		}
-
-		if(@movieList == 0 && @actorList == 0) {
-			#exhausted movie list, means infinite bacon number
-			$nogo = shift @path;
-			say "Unable to find bacon number for $nogo\n";
-			last SEARCH;
-		}
-	}
-
-	# search is finished
-	if($currentBacon == 0) {
-		while(@path) {
-			my $actor = shift(@path);
-			print "$actor\n";
-			if(@path) {
-				my $movie = shift(@path);
-				print "\t$movie\n";
-			}
-		}
-	}
 	}
 }
 
