@@ -29,8 +29,6 @@ sub searchActors {
 	my $queryName = shift;
 	$queryName = join " ", map {ucfirst} split " ", $queryName;
 	
-	print "searching actor: $queryName\n";
-
 	my @listOfActors;
 	foreach $key(keys %{$self}) {
 		if(index($key, $queryName) != -1) {

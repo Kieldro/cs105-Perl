@@ -74,15 +74,13 @@ my %baconNumbers;
 my @queueActors;		# populated by grabbing from movies
 my @queueMovies;		# populated by grabbing from actors
 
-# start from people with Bacon in their name                             
+# Start our search at kevin bacon                         
 my @bacons = $actors->searchActors("Bacon, Kevin");
+# @bacons should only have Kevin bacon in it
+$bacon = shift(@bacons);
+$baconNumbers{$bacon} = 0;
 
-# add bacon people to hash as 0 (starting point)                         
-foreach $bacon (@bacons) {
-    $baconNumbers{$bacon} = 0;
-}
-
-push(@queueActors, @bacons);
+push(@queueActors, $bacon);
 foreach(@queueActors) {
     #grabbing actor from queue                                           
     my $actorName = $_;
@@ -118,8 +116,9 @@ print "Printing out Actors and their Bacon Numbers: \n";
 
 # Input from user
  while(1){
-	
- 	print 'Enter actor (last name, first name): ';
+	# need to format so that our query can be read in as first name last name
+	# and arrange it into last name comma first name
+ 	print 'Actor/Actress? (last name, first name) ';
  	$query = <STDIN>;
 	chomp $query;
 	
@@ -167,9 +166,13 @@ print "Printing out Actors and their Bacon Numbers: \n";
 	
 	# search is finished
 	if($currentBacon == 0) {
-		print "Printing path: \n";
-		foreach $elt (@path) {
-			print "$elt\n";
+		while(@path) {
+			my $actor = shift(@path);
+			print "$actor\n";
+			if(@path) {
+				my $movie = shift(@path);
+				print "\t$movie\n";
+			}
 		}
 	}
 
