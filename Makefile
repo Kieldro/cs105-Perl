@@ -1,6 +1,6 @@
 ASSIGNMENT = final
-# FILE = /u/cdunham/cs105/*.list.gz
-FILE = tris.sublist
+FILE = /u/cdunham/cs105/*.list.gz
+# FILE = tris.sublist
 
 all: ; clear; make $(ASSIGNMENT)
 

@@ -26,13 +26,11 @@ sub addMovieToActor {
 # TODO: make sure that name format (i.e. last, first) is taken care of
 sub searchActors {
 	my $self = shift;
-	# uppercasing the first letter
-	my $queryName = shift;
-	$queryName = join " ", map {ucfirst} split " ", $queryName;
+	my $queryName = lc shift;
 	
 	my @listOfActors;
 	foreach $key(keys %$self) {
-		if(index($key, $queryName) != -1) {
+		if(index(lc $key, $queryName) != -1) {
 			push @listOfActors, $key;
 		}
 	}

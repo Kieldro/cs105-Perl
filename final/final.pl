@@ -31,14 +31,15 @@ $billing = qr/<\d+>/;
 $actorRE = qr/^(?<actor>.+, \w+( \($numeralRE\))?)\t+/;
 $movieRE = qr/\t+(?<movie>(?!")$title(?!") $yearRE)(?:  $role)?(?:  $billing)?(?! \(V\))(?! \(TV\))(?! \(VG\))/;
 
+$startTime = time;
 foreach my $inFile (@ARGV) {
 	say "Opening $inFile..."	;
-	# open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
-	open IN, "$inFile" or die "Could not open $inFile: $!";
+	open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
+	# open IN, "$inFile" or die "Could not open $inFile: $!";
 	
 	say 'Extracting data...';
 	while(<IN>){
-		print STDERR ''.$spinner[++$i/10000 % @spinner]."\r";
+		spin();
 		chomp;
 		if(/$actorRE/){
 			$actor = $+{actor};		# this defines $actor and give a value to $actor
@@ -56,11 +57,15 @@ foreach my $inFile (@ARGV) {
 			# push @{$movieHash{$movie}}, $actor;
 		}
 	}
+	close IN;
 }
+$extractionTime = time - $startTime;
+say "Extraction time: $extractionTime";
 #say @{$movieHash{"A Few Good Men (1992)"}} if $DEBUG;
 
 # Bacon numbers computation
 %baconNumbers = computeBacons();		# stores all actors with bacon numbers
+say "Total elapsed time: ".($extractionTime + $baconTime);
 
 # Input from user
 while(1){
@@ -68,6 +73,7 @@ while(1){
 	$query = <STDIN>;
 	chomp $query;
 	if($query eq ''){
+		
 		say "Thank you for testing.";
 		exit;
 	}
@@ -90,9 +96,13 @@ while(1){
 	
 	search();
 }
-
+		
+sub spin{ print STDERR $spinner[++$j % @spinner]."\r" unless $i++ % 100000 }
 
 sub computeBacons{
+	$startTime = time;
+	say "Computing bacon numbers...";
+	spin();
 	my @actorQueue;		# populated by grabbing from movies
 	my @movieQueue;		# populated by grabbing from actors
 
@@ -133,8 +143,10 @@ sub computeBacons{
 		}
 	}
 
-	print "Printing out Actors and their Bacon Numbers: \n";
-	while (my ($k,$v)=each %baconNumbers) {print "\tBacon Number: $v\tActor: $k\n"}
+	# print "Printing out Actors and their Bacon Numbers: \n";
+	# while (my ($k,$v)=each %baconNumbers) {print "\tBacon Number: $v\tActor: $k\n"}
+	$baconTime = time - $startTime;
+	say "bacon number computation time: $baconTime";
 	return %baconNumbers;
 }
 
