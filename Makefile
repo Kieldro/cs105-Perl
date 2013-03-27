@@ -1,6 +1,6 @@
 ASSIGNMENT = final
-FILE = /u/cdunham/cs105/*.list.gz
-# FILE = *.list.gz
+# FILE = /u/cdunham/cs105/*.list.gz
+FILE = tris.sublist
 
 all: ; clear; make $(ASSIGNMENT)
 
@@ -22,6 +22,8 @@ a7: ; cd a7; ./miditest.pl
 final: ; cd final; ./final.pl $(FILE)
 
 test: ; ./test.pl IntegerArray.txt
+
+curtis: ; /u/cdunham/cs105/final /u/cdunham/cs105/*.list.gz
 
 turnin:
 	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) final.pl

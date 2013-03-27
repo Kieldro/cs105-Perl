@@ -33,8 +33,8 @@ $movieRE = qr/\t+(?<movie>(?!")$title(?!") $yearRE)(?:  $role)?(?:  $billing)?(?
 
 foreach my $inFile (@ARGV) {
 	say "Opening $inFile..."	;
-	open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
-	# open IN, "$inFile" or die "Could not open $inFile: $!";
+	# open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
+	open IN, "$inFile" or die "Could not open $inFile: $!";
 	
 	say 'Extracting data...';
 	while(<IN>){
@@ -101,11 +101,11 @@ sub computeBacons{
 	# @bacons should only have Kevin Bacon in it
 	$bacon = shift @bacons;
 	$baconNumbers{$bacon} = 0;
-
-	push(@actorQueue, $bacon);
-	foreach(@actorQueue) {
+	
+	push @actorQueue, $bacon;
+	while(scalar @actorQueue) {
 		# grabbing actor from queue
-		my $actorName = $_;
+		my $actorName = shift @actorQueue;
 
 		# grab all the movies actor was in
 		my $refMovieList = $actors->getMoviesOfActor($actorName);
@@ -113,9 +113,9 @@ sub computeBacons{
 
 		# put our list of movies into queue and iterate through
 		push @movieQueue, @movieListOfActor;
-		foreach(@movieQueue) {
+		while(scalar @movieQueue) {
 			# grabbing movie from queue
-			my $movieName = $_;
+			my $movieName = shift @movieQueue;
 
 			# grab all actors for the movieName
 			my $refActorList = $movies->getActorsOfMovie($movieName);
@@ -131,12 +131,11 @@ sub computeBacons{
 				}
 			}
 		}
-		
-		return %baconNumbers;
 	}
 
 	print "Printing out Actors and their Bacon Numbers: \n";
-	#while (my ($k,$v)=each %baconNumbers) {print "\tBacon Number: $v\tActor: $k\n"}
+	while (my ($k,$v)=each %baconNumbers) {print "\tBacon Number: $v\tActor: $k\n"}
+	return %baconNumbers;
 }
 
 sub search{

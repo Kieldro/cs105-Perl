@@ -31,9 +31,9 @@ sub searchActors {
 	$queryName = join " ", map {ucfirst} split " ", $queryName;
 	
 	my @listOfActors;
-	foreach $key(keys %{$self}) {
+	foreach $key(keys %$self) {
 		if(index($key, $queryName) != -1) {
-			push(@listOfActors, $key);
+			push @listOfActors, $key;
 		}
 	}
 	
