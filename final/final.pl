@@ -43,25 +43,18 @@ foreach my $inFile (@ARGV) {
 		chomp;
 		if(/$actorRE/){
 			$actor = $+{actor};		# this defines $actor and give a value to $actor
-			# say STDERR '$actor: '.$actor if $DEBUG;
 		}
 		if(/$movieRE/){
 			$movie = $+{movie};
-
-			# Add our movie to our current actor
-			# and an actor to our current movie
+			
 			$actors->addMovieToActor($actor, $movie);
 			$movies->addActorToMovie($actor, $movie);
-			# say STDERR '$movie: '.$movie if $DEBUG;
-			# push @{$actorHash{$actor}}, $movie;
-			# push @{$movieHash{$movie}}, $actor;
 		}
 	}
 	close IN;
 }
 $extractionTime = time - $startTime;
 say "Extraction time: $extractionTime";
-#say @{$movieHash{"A Few Good Men (1992)"}} if $DEBUG;
 
 # Bacon numbers computation
 %baconNumbers = computeBacons();		# stores all actors with bacon numbers

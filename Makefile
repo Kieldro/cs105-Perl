@@ -1,5 +1,5 @@
 ASSIGNMENT = final
-FILE = /u/cdunham/cs105/*.list.gz
+FILE = /u/cdunham/cs105/actors.list.gz
 # FILE = tris.sublist
 
 all: ; clear; make $(ASSIGNMENT)
@@ -19,7 +19,7 @@ a6:
 
 a7: ; cd a7; ./miditest.pl
 
-final: ; cd final; ./final.pl $(FILE)
+final: ; cd final; ./final.pl $(FILE) < input.in
 
 test: ; ./test.pl IntegerArray.txt
 
