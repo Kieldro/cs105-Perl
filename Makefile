@@ -1,4 +1,6 @@
 ASSIGNMENT = final
+FILE = /u/cdunham/cs105/*.list.gz
+# FILE = *.list.gz
 
 all: ; clear; make $(ASSIGNMENT)
 
@@ -17,7 +19,7 @@ a6:
 
 a7: ; cd a7; ./miditest.pl
 
-final: ; cd final; ./final.pl *.list.gz
+final: ; cd final; ./final.pl $(FILE)
 
 test: ; ./test.pl IntegerArray.txt
 
