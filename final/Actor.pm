@@ -1,4 +1,5 @@
 package Actor;
+$DEBUG = 1;
 
 use v5.10;
 

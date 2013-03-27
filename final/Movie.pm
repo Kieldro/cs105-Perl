@@ -1,6 +1,8 @@
 package Movie;
 
 use v5.10;
+use Actor;
+$DEBUG = $Actor::DEBUG;
 
 # create movie object that stores hash of movies
 sub new {
