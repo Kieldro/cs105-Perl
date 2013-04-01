@@ -1,5 +1,6 @@
 ASSIGNMENT = final
-FILE = /u/cdunham/cs105/actors.list.gz
+# FILE = /u/cdunham/cs105/actors.list.gz
+FILE = actors.list.gz
 # FILE = tris.sublist
 
 all: ; clear; make $(ASSIGNMENT)
@@ -26,7 +27,7 @@ test: ; ./test.pl IntegerArray.txt
 curtis: ; /u/cdunham/cs105/final /u/cdunham/cs105/*.list.gz
 
 turnin:
-	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) final.pl
+	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) final.pl Actor.pm Movie.pm
 	turnin --list cdunham $(ASSIGNMENT)
 
 .PHONY: a1 a2 a3 a4 a5 a6 a7 final test turnin

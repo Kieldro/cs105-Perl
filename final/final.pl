@@ -33,7 +33,7 @@ $movieRE = qr/\t+(?<movie>(?!")$title(?!") $yearRE)(?:  $role)?(?:  $billing)?(?
 
 $startTime = time;
 foreach my $inFile (@ARGV) {
-	say "Opening $inFile..."	;
+	say "Opening $inFile...";
 	open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
 	# open IN, "$inFile" or die "Could not open $inFile: $!";
 	
@@ -62,20 +62,18 @@ say "Total elapsed time: ".($extractionTime + $baconTime);
 
 # Input from user
 while(1){
-	print 'Actor/Actress? (last name, first name) ';
+	print 'Enter actor: ';
 	$query = <STDIN>;
 	chomp $query;
 	if($query eq ''){
-		
 		say "Thank you for testing.";
 		exit;
 	}
-	# say 'query: '.$query if $DEBUG;
 	# adjust format
 	if($query =~ /(\w+) (\w+)/){
 		$query = $2.', '.$1;
-		# say 'query: '.$query if $DEBUG;
 	}
+	# say 'query: '.$query if $DEBUG;
 
 	# if we have more than 1 element, print list contents
 	@queryActors = $actors->searchActors($query);
