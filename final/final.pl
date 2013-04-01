@@ -7,7 +7,8 @@
 # 3/19		1200-1400		2 hrs
 # 3/23		0000-0200		2 hrs
 # 3/25		0900-1100		2 hrs
-# Total:					7 hrs
+# 4/1		1300-1700		3 hrs
+# Total:					10 hrs
 # Final Project: The Six Degrees of Kevin Bacon
 
 use v5.10;
@@ -31,17 +32,18 @@ $billing = qr/<\d+>/;
 $actorRE = qr/^(?<actor>.+, \w+( \($numeralRE\))?)\t+/;
 $movieRE = qr/\t+(?<movie>(?!")$title(?!") $yearRE)(?:  $role)?(?:  $billing)?(?! \(V\))(?! \(TV\))(?! \(VG\))/;
 
+# Data input
 $startTime = time;
 foreach my $inFile (@ARGV) {
-	say "Opening $inFile...";
+	say "\nOpening $inFile...";
 	open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
 	
 	say 'Extracting data...';
 	while(<IN>){
-		spin();
 		chomp;
 		if(/$actorRE/){
 			$actor = $+{actor};		# this defines $actor and give a value to $actor
+			spin();
 		}
 		if(/$movieRE/){
 			$movie = $+{movie};
@@ -53,15 +55,14 @@ foreach my $inFile (@ARGV) {
 	close IN;
 }
 $extractionTime = time - $startTime;
-say "Extraction time: $extractionTime";
+say "\nExtraction time: $extractionTime s";
 
 # Bacon numbers computation
 %baconNumbers = computeBacons();		# stores all actors with bacon numbers
-say "Total elapsed time: ".($extractionTime + $baconTime);
+say "Total elapsed time: ".($extractionTime + $baconTime)." s";
 
 # Input from user
 while(1){
-	say 'query: '.$query if $DEBUG;
 	print 'Enter actor: ';
 	$query = <STDIN>;
 	chomp $query;
@@ -70,9 +71,10 @@ while(1){
 		exit;
 	}
 	# adjust format
-	if($query =~ /(\w+) (\w+)/){
+	if($query =~ /(\w+) (\w+) (\($numeralRE\))?/){
 		$query = $2.', '.$1;
 	}
+	say 'query: '.$query if $DEBUG;
 
 	# if we have more than 1 element, print list contents
 	@queryActors = $actors->searchActors($query);
@@ -83,11 +85,32 @@ while(1){
 	    }
 	    next;
 	}
+	my $search = shift @queryActors;
 	
 	search();
 }
 		
-sub spin{ print STDERR $spinner[++$j % @spinner]."\r" unless $i++ % 100000 }
+sub spin{
+	my $oActor = ord $actor;
+	return if $oActor < ord 'A' or $oActor > ord 'Z' or $oActor == $oLast;
+	$oLast = ord $actor;
+	# if($i++ % 100000){
+	# 	print ' ';
+	# }else{
+	# 	print STDERR $spinner[++$j % @spinner];
+	# }
+	# say STDERR (ord $actor) if $DEBUG;
+	my $percent = ((ord $actor) - 65) / ((ord 'Z') - 65);
+	my $total = 26;
+	my $nEqs = int($percent * $total);
+	my $nSpaces = $total - $nEqs;
+	# say STDERR "eqs: ".$nEqs if $DEBUG;
+	if ($DEBUG and (($nEqs + $nSpaces) != 26)){
+		say STDERR "BOOM: ".($nEqs + $nSpaces);
+		exit;
+	}
+	print STDERR "[".('=' x $nEqs).(' ' x $nSpaces)."]\r";
+}
 
 sub computeBacons{
 	$startTime = time;
@@ -141,10 +164,9 @@ sub computeBacons{
 }
 
 sub search{
-	my $search = shift @queryActors;
-
 	# setting current bacon number to our search (eventually this will = 0)
 	my $currentBacon = $baconNumbers{$search};
+	say 'BOOM'.$search;
 	# the path, we will print all of this junk out later
 	my @path;
 	push @path, $search;

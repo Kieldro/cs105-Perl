@@ -1,8 +1,4 @@
 ASSIGNMENT = final
-# FILE = /u/cdunham/cs105/*.list.gz
-# FILE = actors.list.gz
-FILE = tris.sublist.gz
-oFILE = ${$(FILE):0:-3}
 
 all: ; make $(ASSIGNMENT)
 
@@ -21,16 +17,11 @@ a6:
 
 a7: ; cd a7; clear; ./miditest.pl
 
-final: final/$(FILE)
-	cd final; clear; ./final.pl $(FILE) < input.in
-	
-# generate gzipped file if one doesn't exists
-final/$(FILE): final/$(oFILE)
-	cd final; gzip -c $(oFILE) > $(FILE)
+final: ; cd final; make
 
 curtis: ; clear; /u/cdunham/cs105/final /u/cdunham/cs105/*.list.gz
 
-test: ; clear; ./test.pl IntegerArray.txt
+test: ; cd final; make
 
 turnin:
 	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) final.pl \
