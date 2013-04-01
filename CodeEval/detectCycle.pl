@@ -9,7 +9,7 @@ while(<>){
 	# say
 	@sequence = split;
 	
-	findCycle(0);
+	(a,b) = findCycle($i++);
 	
 	# print  @sequence;
 	
@@ -18,6 +18,11 @@ while(<>){
 # 2 0 6 3 1 6 3 1 6 3 1
 
 sub findCycle{
-	say shift @_;
-	@sequest;
+	my $start = @_[0];
+	say $sequence[$i];
+	if($sequence[$start] == $sequence[$start + ++$j]){
+		
+		
+	}
+	return ($start, $j);
 }
