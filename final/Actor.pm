@@ -23,14 +23,13 @@ sub addMovieToActor {
 
 
 # returns a list of keys that may match the search query
-# TODO: make sure that name format (i.e. last, first) is taken care of
 sub searchActors {
 	my $self = shift;
 	my $queryName = lc shift;
 	
 	my @listOfActors;
 	foreach $key(keys %$self) {
-		if(index(lc $key, $queryName) != -1) {
+		if(index (lc $key, $queryName) != -1) {
 			push @listOfActors, $key;
 		}
 	}

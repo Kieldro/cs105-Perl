@@ -35,7 +35,6 @@ $startTime = time;
 foreach my $inFile (@ARGV) {
 	say "Opening $inFile...";
 	open IN, "zcat $inFile |" or die "Could not open $inFile: $!";
-	# open IN, "$inFile" or die "Could not open $inFile: $!";
 	
 	say 'Extracting data...';
 	while(<IN>){
@@ -62,6 +61,7 @@ say "Total elapsed time: ".($extractionTime + $baconTime);
 
 # Input from user
 while(1){
+	say 'query: '.$query if $DEBUG;
 	print 'Enter actor: ';
 	$query = <STDIN>;
 	chomp $query;
@@ -73,7 +73,6 @@ while(1){
 	if($query =~ /(\w+) (\w+)/){
 		$query = $2.', '.$1;
 	}
-	# say 'query: '.$query if $DEBUG;
 
 	# if we have more than 1 element, print list contents
 	@queryActors = $actors->searchActors($query);
