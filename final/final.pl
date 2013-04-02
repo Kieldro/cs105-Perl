@@ -71,7 +71,7 @@ while(1){
 		exit;
 	}
 	# adjust format
-	if($query =~ /(\w+) (\w+) (\($numeralRE\))?/){
+	if($query =~ /(\w+) (\w+)/){
 		$query = $2.', '.$1;
 	}
 	say 'query: '.$query if $DEBUG;
@@ -85,7 +85,7 @@ while(1){
 	    }
 	    next;
 	}
-	my $search = shift @queryActors;
+	$search = shift @queryActors;
 	
 	search();
 }
@@ -115,7 +115,6 @@ sub spin{
 sub computeBacons{
 	$startTime = time;
 	say "Computing bacon numbers...";
-	spin();
 	my @actorQueue;		# populated by grabbing from movies
 	my @movieQueue;		# populated by grabbing from actors
 
@@ -137,6 +136,7 @@ sub computeBacons{
 		# put our list of movies into queue and iterate through
 		push @movieQueue, @movieListOfActor;
 		while(scalar @movieQueue) {
+			# print STDERR $spinner[++$j % @spinner]."\r" unless $j % 100000;
 			# grabbing movie from queue
 			my $movieName = shift @movieQueue;
 
@@ -166,7 +166,7 @@ sub computeBacons{
 sub search{
 	# setting current bacon number to our search (eventually this will = 0)
 	my $currentBacon = $baconNumbers{$search};
-	say 'BOOM'.$search;
+	# say 'BOOM'.$search;
 	# the path, we will print all of this junk out later
 	my @path;
 	push @path, $search;
@@ -215,27 +215,3 @@ sub search{
 		}
 	}
 }
-
-# sample output
-
-# doctor-nick.cs.utexas.edu% ./final.pl /u/cdunham/cs105/*.list.gz
-# Actor/Actress? malkovich
-# Malkovich, Claudia
-# Malkovich, Erik
-# Malkovich, John
-# Malkovich, Kent
-# Actor/Actress? john malkovic
-# Actor/Actress? john malkovich
-# Malkovich, John
-# 	Queens Logic (1991)
-# Bacon, Kevin
-# Actor/Actress? Chaplin, Charles
-# Chaplin, Charles
-# 	Countess from Hong Kong, A (1967)
-# Loren, Sophia
-# 	Pr?t-?-Porter (1994)
-# Whitaker, Forest
-# 	Air I Breathe, The (2007)
-# Bacon, Kevin
-# Actor/Actress? ^D
-# doctor-nick.cs.utexas.edu%

@@ -1,5 +1,5 @@
 package Actor;
-$DEBUG = 1;
+$DEBUG = 0;
 
 use v5.10;
 
