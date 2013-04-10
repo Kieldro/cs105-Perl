@@ -1,6 +1,6 @@
 
-# FILE = /u/cdunham/cs105/*.list.gz
-FILE = actors.list.gz
+FILE = /u/cdunham/cs105/*.list.gz
+# FILE = actors.list.gz
 # oFILE = tris.sublist
 # FILE = $(oFILE).gz
 

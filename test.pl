@@ -1,55 +1,29 @@
 #!/usr/bin/perl
+# searches network for a user
 
 use v5.10;
 
-push @{$hash{'str' }} 4;
-push @{$hash{'str' }}, 7;
+$user = 'jwilke';
+@machines = `cshosts pub`;
+say "searching for $user...";
 
-say ref	$hash{'str'};
-say @{$hash{'str'}};
+foreach $host (@machines){
+	spin();
+	chomp $host;
+	@input = `finger \@$host`;
+	foreach(@input){
+		say "\n$user found on $host." and exit if /^($user)/;
+	}
+}
+say "\n$user not found.";
 
-# while(<>){
-# 	# say;
-# 	push @numbers, $_;
-	
-# }
-# say 'size '.scalar @numbers;
-
-# @numbers = count(@numbers);
-
-# say 'size '.scalar @numbers;
-# say @numbers;
-
-# sub count{
-# 	my @a = shift;
-# 	say @a;
-# 	my $len = scalar @a;
-# 	if($len < 2){
-# 		return @a;
-# 	}
-# 	my @b = count(@a[0, $len/2]);
-# 	my @c = count(@a[$len/2+1, -1]);
-# 	my @result;
-	
-# 	while(scalar @b and scalar @c){
-		
-# 		if($b[0] < $c[0]){
-# 			push @result, shift @b
-# 		}else{push @result, shift @c}
-# 	}
-# 	@a = @result;
-# 	return @a;
-# }
-
-
-# $user = 'jwilke';
-# @machines = qw/seafoam/;# lust milky-way/;
-# $pw = ';lkj1234';
-
-# foreach (@machines){
-# 	say 'boom';
-# 	system qq/ssh keo\@$_.cs.utexas.edu/;
-# 	system qq/$pw/;
-# 	# system qq/finger $user/;
-# 	# system "exit";
-# }
+sub spin{
+	# my $oActor = ord $actor;
+	# return if $oActor < ord 'A' or $oActor > ord 'Z' or $oActor == $oLast;
+	# $oLast = ord $actor;
+	my $percent = (++$i) / (scalar @machines);
+	my $total = 25;
+	my $nEqs = int($percent * $total);
+	my $nSpaces = $total - $nEqs;
+	print STDERR "[".('=' x $nEqs).(' ' x $nSpaces)."]\r";
+}

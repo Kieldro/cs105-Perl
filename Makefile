@@ -21,7 +21,7 @@ final: ; cd final; make
 
 curtis: ; clear; /u/cdunham/cs105/final /u/cdunham/cs105/*.list.gz
 
-test: ; cd final; make
+test: ; ./test.pl
 
 turnin:
 	cd $(ASSIGNMENT); turnin --submit cdunham $(ASSIGNMENT) final.pl \
