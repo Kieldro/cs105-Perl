@@ -6,21 +6,36 @@
 
 use v5.10;
 
+$DEBUG = 1;
+
 # main
-@tuple = getStrands();
-$len = longestCommonSubseq(@tuple);
-printCommonSubseqs(@tuple, $len);
+while(1){
+	@tuple = getStrands();
+	# say @tuple if $DEBUG;
+
+	$longestLen = longestCommonSubseq(@tuple);
+	say $longestLen if $DEBUG;
+	printCommonSubseqs(@tuple, $longestLen);
+}
 
 # function definitions
 
 # prompts the user for two strands
 # returns a tuple containing the two DNA strands.
 sub getStrands{
-	say "Enter first strand: ";
-	$s1 = <STDIN>;
+	my @a;
+	for(1..2){
+		my $ordinal = $_ == 1 ? 'first' : 'second';
+		say "Enter $ordinal strand: ";
+		$_ =  <STDIN>;
+		chomp;
+		say if $DEBUG;
+		push @a, $_;
+	}
+	# say scalar @a if $DEBUG;
+	my ($s1, $s2) = @a;
 	
-	say "Enter second strand: ";
-	$s2 = <STDIN>;
+	exit if !$s1 or !$s2;		# empty string entered
 	
 	return ($s1, $s2);
 }
@@ -28,19 +43,29 @@ sub getStrands{
 # accepts two DNA sequences.
 # returns the length of the longest common subsequence of the two strands.
 sub longestCommonSubseq{
-	$s1 = shift;
-	$s2 = shift;
+	say 'longestCommonSubseq...' if $DEBUG;
+	my ($s1, $s2) = @_;		# parameters
+	# say $s1 if $DEBUG;
+	# say $s2 if $DEBUG;
+	my $longestLen = 0;
 	
-	return -1;
+	for(my $i = 0; $i < length $s1; ++$i){
+		for(my $len = 1; $len > $longestLen and $len + $i < length $s1; ++$len){
+			$sub = substr $s1, $i, $len;
+			$longestLen = $len if (index $s2, $sub) != -1 and $len > $longestLen;
+		}
+	}
+	
+	return $longestLen;
 }
 
 # accepts three parameters: 2 DNA strands and a length, in that order.
 # Finds all common subsequences of the specified length and prints them to the screen.
 sub printCommonSubseqs{
-	$s1 = shift;
-	$s2 = shift;
-	$len = shift;
+	my ($s1, $s2, $len) = @_;
+	my $sub = 'NULL';
 	
+	say "Common subsequences:";
 	say $sub;
 }
 
