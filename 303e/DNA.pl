@@ -27,7 +27,7 @@ sub getStrands{
 	for(1..2){
 		my $ordinal = $_ == 1 ? 'first' : 'second';
 		say "Enter $ordinal strand: ";
-		$_ =  <STDIN>;
+		$_ =  uc <STDIN>;
 		chomp;
 		say if $DEBUG;
 		push @a, $_;
@@ -43,16 +43,18 @@ sub getStrands{
 # accepts two DNA sequences.
 # returns the length of the longest common subsequence of the two strands.
 sub longestCommonSubseq{
-	say 'longestCommonSubseq...' if $DEBUG;
+	say 'longestCommonSubseq()...' if $DEBUG;
 	my ($s1, $s2) = @_;		# parameters
 	# say $s1 if $DEBUG;
 	# say $s2 if $DEBUG;
 	my $longestLen = 0;
 	
 	for(my $i = 0; $i < length $s1; ++$i){
-		for(my $len = 1; $len > $longestLen and $len + $i < length $s1; ++$len){
+		for(my $len = $longestLen; $len + $i < length $s1; ++$len){
+			next if $len <= $longestLen;
 			$sub = substr $s1, $i, $len;
-			$longestLen = $len if (index $s2, $sub) != -1 and $len > $longestLen;
+			$longestLen = $len if (index $s2, $sub) != -1;
+			say "BOOM: ".$sub if (index $s2, $sub) != -1 and $DEBUG;
 		}
 	}
 	
@@ -65,8 +67,10 @@ sub printCommonSubseqs{
 	my ($s1, $s2, $len) = @_;
 	my $sub = 'NULL';
 	
+	say "No common sequences found for $s1 and $s2." and return if $len <= 1;
 	say "Common subsequences:";
 	say $sub;
+	say;
 }
 
 
