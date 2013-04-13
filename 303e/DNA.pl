@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # File: DNA.pl
 # Description: finds matching substrings
-#
+# run with: ./DNA.pl < inDNA.in
 # Name: Ian Buitrago
 
 use v5.10;
@@ -11,10 +11,7 @@ $DEBUG = 1;
 # main
 while(1){
 	@tuple = getStrands();
-	# say @tuple if $DEBUG;
-
 	$longestLen = longestCommonSubseq(@tuple);
-	say $longestLen if $DEBUG;
 	printCommonSubseqs(@tuple, $longestLen);
 }
 
@@ -28,6 +25,7 @@ sub getStrands{
 		my $ordinal = $_ == 1 ? 'first' : 'second';
 		say "Enter $ordinal strand: ";
 		$_ =  uc <STDIN>;
+		say 'Program terminated.' and exit if !$_;		# empty string entered
 		chomp;
 		say if $DEBUG;
 		push @a, $_;
@@ -35,15 +33,13 @@ sub getStrands{
 	# say scalar @a if $DEBUG;
 	my ($s1, $s2) = @a;
 	
-	exit if !$s1 or !$s2;		# empty string entered
-	
 	return ($s1, $s2);
 }
 
 # accepts two DNA sequences.
 # returns the length of the longest common subsequence of the two strands.
 sub longestCommonSubseq{
-	say 'longestCommonSubseq()...' if $DEBUG;
+	# say 'longestCommonSubseq()...' if $DEBUG;
 	my ($s1, $s2) = @_;		# parameters
 	# say $s1 if $DEBUG;
 	# say $s2 if $DEBUG;
@@ -54,26 +50,32 @@ sub longestCommonSubseq{
 			next if $len <= $longestLen;
 			$sub = substr $s1, $i, $len;
 			$longestLen = $len if (index $s2, $sub) != -1;
-			say "BOOM: ".$sub if (index $s2, $sub) != -1 and $DEBUG;
+			# say "	BOOM: ".$sub if (index $s2, $sub) != -1 and $DEBUG;
 		}
 	}
 	
+	# say $longestLen if $DEBUG;
 	return $longestLen;
 }
 
 # accepts three parameters: 2 DNA strands and a length, in that order.
 # Finds all common subsequences of the specified length and prints them to the screen.
 sub printCommonSubseqs{
-	my ($s1, $s2, $len) = @_;
+	my ($s1, $s2, $longestLen) = @_;
 	my $sub = 'NULL';
 	
-	say "No common sequences found for $s1 and $s2." and return if $len <= 1;
+	say "No common subsequences found for $s1 and $s2.\n" and return if $longestLen <= 1;
+	
 	say "Common subsequences:";
-	say $sub;
+	for(my $i = 0; $i < length $s1; ++$i){
+		if($longestLen + $i <= length $s1){
+			$sub = substr $s1, $i, $longestLen;
+			say $sub if (index $s2, $sub) != -1;
+		}
+	}
+	
 	say;
 }
-
-
 
 # SAMPLE OUTPUT
 # Please enter a strand of DNA: ATGGCATAAGCTT
