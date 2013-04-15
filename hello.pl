@@ -125,7 +125,7 @@ shift @a;
 @b = sort @a;		# stringwise
 @bar = sort { $a cmp $b } @foo;		# numerical sort/ merge sort
 
-@ARGV		# command line args are assigned to this
+@ARGV;		# command line args are assigned to this
 $first = shift;		# takes first arg of ARGV, unless in subroutine then @_ 
 $gone = delete $hash{'foo'}
 @gone = delete @hash{qw(foo bar)}

@@ -1,4 +1,4 @@
-ASSIGNMENT = final
+ASSIGNMENT = 303
 
 all: ; make $(ASSIGNMENT)
 
@@ -20,6 +20,8 @@ a7: ; cd a7; clear; ./miditest.pl
 final: ; cd final; make
 
 curtis: ; clear; /u/cdunham/cs105/final /u/cdunham/cs105/*.list.gz
+
+303: ; cd 303e; ./DNA.pl < inDNA.in
 
 test: ; ./test.pl
 
