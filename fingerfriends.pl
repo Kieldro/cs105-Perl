@@ -4,35 +4,26 @@
 use v5.10;
 
 @users = qw/jwilke fayz acoomans pandaman matias carroll keo/;
-@machines = `cshosts -a sins64`;
-say "searching for friends...";
+@machines = split /\s+/, `cshosts -a pub`;
 
+say "searching for friends...";
 foreach $host (@machines){
 	# spin();
-	chomp $host;
-	$pid = fork();
-	chomp $pid;
-	say $pid;
-	push @pid, $pid;
-	# ++$n;
-	if($pid){
+	$pid = fork;
+	if(!$pid)
+	{
 		# child
-		# say $host;
-		@input = `finger \@$host`;
+		@input = `finger \@$host 2>&1`;
 		foreach(@input){
 			foreach $user(@users){
 				say "\n$user found on $host." if /$user/i;
 			}
 		}
-		say "$n$host exiting..." and 
 		exit;
 	}
 }
-# say "wait returns: ".waitpid;
-# say 
-foreach(@pid){
-	# say @pid;
-	# say waitpid($_, 0);
+while(wait != -1){		# reap all children
+	spin();
 }
 say "\nSEARCH COMPLETE.";
 
